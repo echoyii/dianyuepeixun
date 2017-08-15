@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+		<script type="text/javascript" src="__PUBLIC__/birthday/birthday.js"></script>
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/User/add_user')}" method="POST" enctype="multipart/form-data">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 手机号: </label>
+
+										<div class="col-sm-9">
+											<input type="text" name="mobile" id="form-field-1" placeholder="手机号" class="col-xs-10 col-sm-5">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 密码: </label>
+
+										<div class="col-sm-9">
+											<input type="password" id="form-field-2" placeholder="密码" class="col-xs-10 col-sm-5" name="password1">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 再次输入密码: </label>
+
+										<div class="col-sm-9">
+											<input type="password" id="form-field-2" placeholder="再次输入密码" class="col-xs-10 col-sm-5" name="password2">
+										</div>
+									</div>
+									<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 用户状态: </label>
+									&nbsp;&nbsp;&nbsp;
+										<select name="state">
+										<option value="1">激活</option>
+										<option value="0">冻结</option>
+										</select>
+									</div>
+									<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 性别: </label>
+									&nbsp;&nbsp;&nbsp;
+										<label>
+											<input name="gender" type="radio" class="ace" value="1">
+											<span class="lbl"> 男</span>
+										</label>
+										<label>
+											<input name="gender" type="radio" class="ace" value="0">
+											<span class="lbl"> 女</span>
+										</label>
+									</div>
+
+									<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 生日: </label>
+									&nbsp;&nbsp;&nbsp;
+									        <select class="sel_year" rel="" name="year"></select>年
+									        <select class="sel_month" rel="" name="month"></select>月
+									        <select class="sel_day" rel="" name="day"></select>日
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 详细地址: </label>
+
+										<div class="col-sm-9">
+											<input type="text" name="address" id="form-field-1" placeholder="详细地址" class="col-xs-10 col-sm-5">
+										</div>
+									</div>
+									<div class="space-4"></div>
+										
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 上传头像: </label>
+										<div class="col-sm-8">
+											<input type="file" id="form-field-2" class="col-xs-10 col-sm-5" name="avatar">
+										</div>
+									</div>
+			
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												添加
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/User/user_lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+									</div><!-- /row -->
+
+								</form>
+
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+<script type="text/javascript">
+$(function () {
+$.ms_DatePicker({
+    YearSelector: ".sel_year",
+    MonthSelector: ".sel_month",
+    DaySelector: ".sel_day"
+});
+$.ms_DatePicker();
+}); 
+</script>
+		<include file="Index/footer" />
+	</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+		<!-- // <script type="text/javascript" src="__PUBLIC__/ajaxfileupload.js"></script> -->
+	</head>
+	<body>
+
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="space-4"></div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 上传样品图: </label>
+									<div class="col-xs-12">
+										<div class="row-fluid">
+											<ul class="ace-thumbnails" id="thumbnails">
+											<volist name="list" id="vo">
+											<notempty name="vo.img_url">
+											<li>
+												<a href="#" data-rel="colorbox" class="cboxElement">
+													<img style="height:100px; width:100px;" src="{$vo.img_url}">
+												</a>
+												<div class="tools tools-top">
+												<a href="#">
+													<i class="icon-remove red delete_sample" sid="{$vo.id}"></i>
+												</a>
+												</div>
+											</li>
+											</notempty>
+											</volist>
+											</ul>
+										</div><!-- PAGE CONTENT ENDS -->
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-9" id="img_upload_div">
+										<input type="file" name="sample[]" id="upload_img" multiple="multiple" data-url="abc" />
+										<br/>
+										<!-- <button class="btn btn-primary" id="submit_image">上传</button> -->
+										<a href="{:U('Admin/Funding/sampling_lists')}">
+										<button class="btn btn-info" id="submit_image">
+												<i class="icon-ok bigger-110"></i>
+												完成
+										</button>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<include file="Index/footer" />
+
+<script type="text/javascript">
+/**
+ * 上传样品图
+ */
+$(document).ready(function(){
+
+	$("#upload_img").on('change',function(){
+
+		var s = document.getElementById("upload_img").files.length;
+		var fd = new FormData();
+		var id = {$id};
+		for (var i = 0; i < s; i++) {
+			fd.append("sample"+i,document.getElementById("upload_img").files[i]);
+		};
+		// fd.append("imgs",document.getElementById("upfile").files[0]);
+		fd.append('id',id);
+		var url="{:U('Admin/Funding/upload_sample_image')}";
+		var now_url = window.location.href;
+		$.ajax({
+			type:'POST',
+			url:url,
+			 // 告诉jQuery不要去处理发送的数据
+			processData: false,
+			 // 告诉jQuery不要去设置Content-Type请求头
+			contentType: false,
+			data:fd,
+			dataType:'json',
+			success:function(data){
+				if(data==1){
+
+					window.location.href = now_url;
+				}else{
+
+					return;
+				}
+			}
+		});
+	});
+
+
+	/**
+	 * 删除样品图
+	 */
+	
+	$(".delete_sample").on('click',function(){
+		var sid = $(this).attr('sid');
+		var url = "{:U('Admin/Funding/delete_sample')}";
+		var refresh_url = window.location.href;
+		var id = {$id};
+		$.ajax({
+			type:'post',
+			url:url,
+			data:{sid:sid,id:id},
+			dataType:'json',
+			success:function(data){
+
+				if(data==1){
+
+					window.location.href = refresh_url;
+				}else{
+
+					return;
+				}
+			}
+		});
+	});
+});
+
+</script>
+
+	</body>
+</html>

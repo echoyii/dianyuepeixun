@@ -1,0 +1,69 @@
+<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='__PUBLIC__/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='__PUBLIC__/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="__PUBLIC__/assets/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/assets/js/typeahead-bs2.min.js"></script>
+
+
+		<script src="__PUBLIC__/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.sparkline.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.resize.min.js"></script>
+
+
+
+		<script src="__PUBLIC__/assets/js/ace-elements.min.js"></script>
+		<script src="__PUBLIC__/assets/js/ace.min.js"></script>
+
+
+
+		
+
+		<script>
+		//菜单的动态处理
+		$(function(){
+			if($("#Funding").click()){
+				$("#{$menu_select_tag}").addClass("active");
+				$("#{$menu_select_tag}").parent('ul').parent('li').addClass("active open");
+			}
+			if($("#User").click()){
+				$("#{$menu_select_tag}").addClass("active");
+				$("#{$menu_select_tag}").parent('ul').parent('li').addClass("active open");
+				$("#{$menu_select_tag}").parent('ul').parent('li').parent('ul').parent('li').addClass("active open");
+			}
+			if($("#Product").click()){
+				$("#{$menu_select_tag}").addClass("active");
+				$("#{$menu_select_tag}").parent('ul').parent('li').addClass("active open");
+				$("#{$menu_select_tag}").parent('ul').parent('li').parent('ul').parent('li').addClass("active open");
+			}
+			if($("#Organ").click()){
+				$("#{$menu_select_tag}").addClass("active");
+				$("#{$menu_select_tag}").parent('ul').parent('li').addClass("active open");
+			}
+			if($("#Adv").click()){
+				$("#{$menu_select_tag}").addClass("active");
+				$("#{$menu_select_tag}").parent('ul').parent('li').addClass("active open");
+			}
+			if($("#System").click()){
+				$("#{$menu_select_tag}").addClass("active");
+				$("#{$menu_select_tag}").parent('ul').parent('li').addClass("active open");
+			}
+			
+			
+		});
+		
+		</script>

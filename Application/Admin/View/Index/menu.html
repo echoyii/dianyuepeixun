@@ -1,0 +1,426 @@
+<div class="sidebar" id="sidebar">
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+					</script>
+
+					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+						<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+							<button class="btn btn-success">
+								<i class="icon-signal"></i>
+							</button>
+
+							<button class="btn btn-info">
+								<i class="icon-pencil"></i>
+							</button>
+
+							<button class="btn btn-warning">
+								<i class="icon-group"></i>
+							</button>
+
+							<button class="btn btn-danger">
+								<i class="icon-cogs"></i>
+							</button>
+						</div>
+
+						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+							<span class="btn btn-success"></span>
+
+							<span class="btn btn-info"></span>
+
+							<span class="btn btn-warning"></span>
+
+							<span class="btn btn-danger"></span>
+						</div>
+					</div><!-- #sidebar-shortcuts -->
+
+					<ul class="nav nav-list">
+						<li >
+							<a href="{:U('Admin/Index/index')}">
+								<i class="icon-home"></i>
+								<span class="menu-text"> 首页 </span>
+							</a>
+						</li>
+
+						<li id="User">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-user"></i>
+								<span class="menu-text"> 用户管理 </span>
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li >
+									<a href="#" class="dropdown-toggle">
+										<i class="icon-double-angle-right"></i>
+										管理员管理
+										<b class="arrow icon-angle-down"></b>
+									</a>
+									<ul class="submenu">
+										<li id="User_admin_lists">
+											<a href="{:U('Admin/User/admin_lists')}">
+												<i class="icon-leaf"></i>
+												管理员列表
+											</a>
+										</li>
+										<li id="User_add_admin">
+											<a href="{:U('Admin/User/add_admin')}">
+												<i class="icon-leaf"></i>
+												添加管理员
+											</a>
+										</li>
+										<li id="User_node">
+											<a href="{:U('Admin/User/node')}">
+												<i class="icon-leaf"></i>
+												节点管理
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="#" class="dropdown-toggle">
+										<i class="icon-double-angle-right"></i>
+										会员管理
+										<b class="arrow icon-angle-down"></b>
+									</a>
+									<ul class="submenu">
+										<li id="User_user_lists">
+											<a href="{:U('Admin/User/user_lists')}">
+												<i class="icon-leaf"></i>
+												用户列表
+											</a>
+										</li>
+										<li id="User_add_user">
+											<a href="{:U('Admin/User/add_user')}">
+												<i class="icon-leaf"></i>
+												添加用户
+											</a>
+										</li>
+										<li id="User_group_lists">
+											<a href="{:U('Admin/User/group_lists')}">
+												<i class="icon-leaf"></i>
+												分组管理
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li id="User_feedback">
+									<a href="{:U('Admin/User/feedback')}">
+										<i class="icon-double-angle-right"></i>
+										用户反馈
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li id="Funding">
+							<a href="#"  class="dropdown-toggle">
+								<i class="icon-list"></i>
+								<span class="menu-text"> 项目管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+
+								<li id="Funding_add">
+									<a href="{:U('Admin/Funding/add')}">
+										<i class="icon-double-angle-right"></i>
+										添加项目
+									</a>
+								</li>
+								
+								<li id="Funding_all_lists">
+									<a href="{:U('Admin/Funding/all_lists')}">
+										<i class="icon-double-angle-right"></i>
+										所有项目
+									</a>
+								</li>
+								<li id="Funding_new_lists">
+									<a href="{:U('Admin/Funding/new_lists')}">
+										<i class="icon-double-angle-right"></i>
+										待审核项目
+									</a>
+								</li>
+								<li id="Funding_spon_lists">
+									<a href="{:U('Admin/Funding/spon_lists')}">
+										<i class="icon-double-angle-right"></i>
+										众筹中项目
+									</a>
+								</li>
+								<li id="Funding_sampling_lists">
+									<a href="{:U('Admin/Funding/sampling_lists')}">
+										<i class="icon-double-angle-right"></i>
+										抽检中项目
+									</a>
+								</li>
+								<li id="Funding_finish_lists">
+									<a href="{:U('Admin/Funding/finish_lists')}">
+										<i class="icon-double-angle-right"></i>
+										已完成项目
+									</a>
+								</li>
+								<li id="Funding_abnormal_lists">
+									<a href="{:U('Admin/Funding/abnormal_lists')}">
+										<i class="icon-double-angle-right"></i>
+										异常的项目
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li id="Product">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-edit"></i>
+								<span class="menu-text"> 产品管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="Product_lists">
+									<a href="{:U('Admin/Product/lists')}">
+										<i class="icon-double-angle-right"></i>
+										产品列表
+									</a>
+								</li>
+
+								<li id="Product_add_product">
+									<a href="{:U('Admin/Product/add_product')}">
+										<i class="icon-double-angle-right"></i>
+										添加产品
+									</a>
+								</li>
+								<li>
+									<a href="#" class="dropdown-toggle">
+										<i class="icon-double-angle-right"></i>
+										分类管理
+										<b class="arrow icon-angle-down"></b>
+									</a>
+									<ul class="submenu">
+										<li id="Product_classify_lists">
+											<a href="{:U('Admin/Product/classify_lists')}">
+												<i class="icon-leaf"></i>
+												分类列表
+											</a>
+										</li>
+										<li id="Product_add_classify">
+											<a href="{:U('Admin/Product/add_classify')}">
+												<i class="icon-leaf"></i>
+												添加主分类
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="icon-leaf"></i>
+												预览分类
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li id="Special">
+							<a href="#"  class="dropdown-toggle">
+								<i class="icon-list"></i>
+								<span class="menu-text"> 专题管理 </span>
+								<b class="arrow icon-angle-down"></b>
+							</a>
+							<ul class="submenu">
+								<li id="Special_add_special">
+									<a href="{:U('Admin/Special/add_special')}">
+										<i class="icon-double-angle-right"></i>
+										添加专题
+									</a>
+								</li>
+								<li id="Special_special_lists">
+									<a href="{:U('Admin/Special/special_lists')}">
+										<i class="icon-double-angle-right"></i>
+										专题列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li id="System">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-th-large"></i>
+								<span class="menu-text"> 检测内容设置 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="System_items_lists">
+									<a href="{:U('Admin/System/items_lists')}">
+										<i class="icon-double-angle-right"></i>
+										检测明细列表
+									</a>
+								</li>
+								<li id="System_package_lists">
+									<a href="{:U('Admin/System/package_lists')}">
+										<i class="icon-double-angle-right"></i>
+										检测内容列表
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li id="Tag">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-tags"></i>
+								<span class="menu-text"> 标签管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="Tag_lists">
+									<a href="{:U('Admin/Tag/lists')}">
+										<i class="icon-double-angle-right"></i>
+										首页标签
+									</a>
+								</li>
+								<li id="Tag_search_lists">
+									<a href="{:U('Admin/Tag/search_lists')}">
+										<i class="icon-double-angle-right"></i>
+										搜索标签
+									</a>
+								</li>
+								<li id="Tag_unsafe_lists">
+									<a href="{:U('Admin/Tag/unsafe_lists')}">
+										<i class="icon-double-angle-right"></i>
+										曝光标签
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li id="Organ">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-tags"></i>
+								<span class="menu-text"> 机构管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="Organ_lists">
+									<a href="{:U('Admin/Organ/lists')}">
+										<i class="icon-double-angle-right"></i>
+										机构列表
+									</a>
+								</li>
+								<li id="Organ_add">
+									<a href="{:U('Admin/Organ/add')}">
+										<i class="icon-double-angle-right"></i>
+										添加机构
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li id="Adv">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-eye-open"></i>
+								<span class="menu-text"> 广告管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="Adv_lists">
+									<a href="{:U('Admin/Adv/lists')}">
+										<i class="icon-double-angle-right"></i>
+										广告列表
+									</a>
+								</li>
+								<li id="Adv_add">
+									<a href="{:U('Admin/Adv/add')}">
+										<i class="icon-double-angle-right"></i>
+										添加广告
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li id="News">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-eye-open"></i>
+								<span class="menu-text"> 资讯管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="News_lists">
+									<a href="{:U('Admin/News/lists')}">
+										<i class="icon-double-angle-right"></i>
+										资讯列表
+									</a>
+								</li>
+								<li id="News_add">
+									<a href="{:U('Admin/News/add')}">
+										<i class="icon-double-angle-right"></i>
+										添加资讯
+									</a>
+								</li>
+							</ul>
+						</li>
+						
+
+
+						<!-- <li id="Details">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-th-large"></i>
+								<span class="menu-text"> 检测项目详情 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="Details_lists">
+									<a href="{:U('Admin/Details/lists')}">
+										<i class="icon-double-angle-right"></i>
+										项目详情列表
+									</a>
+								</li>
+								<li id="Details_add">
+									<a href="{:U('Admin/Details/add')}">
+										<i class="icon-double-angle-right"></i>
+										添加详情项目
+									</a>
+								</li>
+							</ul>
+						</li> -->
+
+
+						<li id="Sendmessage">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-envelope"></i>
+								<span class="menu-text"> 消息通知 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li id="Sendmessage_lists">
+									<a href="{:U('Admin/Sendmessage/lists')}">
+										<i class="icon-double-angle-right"></i>
+										消息列表
+									</a>
+								</li>
+
+								<li id="Sendmessage_create">
+									<a href="{:U('Admin/Sendmessage/create')}">
+										<i class="icon-double-angle-right"></i>
+										新建消息
+									</a>
+								</li>
+							</ul>
+						</li>
+
+					</ul><!-- /.nav-list -->
+
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+					</script>
+				</div>

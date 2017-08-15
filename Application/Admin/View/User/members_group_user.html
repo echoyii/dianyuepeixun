@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="table-header">
+											用户列表
+										</div>
+
+										<div class="table-responsive">
+											<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+											<div class="row">
+											<div class="col-sm-6">
+											<div id="sample-table-2_length" class="dataTables_length">
+
+											</div>
+											</div>
+											<div class="col-sm-6" style="margin-bottom:-20px;">
+											<div class="dataTables_filter" id="sample-table-2_filter">
+											<label>搜索: <input type="text" aria-controls="sample-table-2">
+
+												<p style="margin-top:20px;"></p>
+
+											</label>
+											</div>
+											</div>
+											</div>
+											<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info" >
+												<thead>
+													<tr role="row"><th  role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 100px;">ID</th>
+													<th  role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 150px;">用户名</th>
+													<th  role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 150px;">分组</th>
+														<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 100px;"></th></tr>
+												</thead>
+						
+											<!-- <tbody role="alert" aria-live="polite" aria-relevant="all"> -->
+											<volist name="list" id="vo">
+											<tr class="odd">
+												<td class=" ">{$vo.id}</td>
+												<td class=" ">
+													{$vo.m_id}
+												</td>
+												<td class=" ">{$vo.g_id}</td>
+
+												<td class=" ">
+													<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+
+														<a class="red" href="javascript:del_members_group_user({$vo.id},{$vo.gid})">
+															<i class="icon-trash bigger-130" title="删除" ></i>
+														</a>
+													</div>
+
+													<div class="visible-xs visible-sm hidden-md hidden-lg">
+														<div class="inline position-relative">
+															<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+																<i class="icon-caret-down icon-only bigger-120"></i>
+															</button>
+
+															<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+																<li>
+																	<a href="#" class="tooltip-info" data-rel="tooltip" data-original-title="View">
+																		<span class="blue">
+																			<i class="icon-zoom-in bigger-120"></i>
+																		</span>
+																	</a>
+																</li>
+
+																<li>
+																	<a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+																		<span class="green">
+																			<i class="icon-edit bigger-120"></i>
+																		</span>
+																	</a>
+																</li>
+
+																<li>
+																	<a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete">
+																		<span class="red">
+																			<i class="icon-trash bigger-120"></i>
+																		</span>
+																	</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</td>
+											</tr>
+											</volist>
+											</tbody>
+											</table>
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="dataTables_info" id="sample-table-2_info">Showing 1 to 10 of 23 entries</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="dataTables_paginate paging_bootstrap">
+															<ul class="pagination">
+																<li class="prev disabled">
+																	<a href="#"><i class="icon-double-angle-left"></i></a>
+																</li>
+																<li class="active"><a href="#">1</a></li>
+																<li><a href="#">2</a></li>
+																<li><a href="#">3</a></li>
+																<li class="next"><a href="#"><i class="icon-double-angle-right"></i></a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+								</div>
+						</div>
+
+
+
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<include file="Index/footer" />
+		<script>
+		function del_members_group_user(id,gid)
+		{
+			var r= confirm('确定删除用户?');
+			if(r)
+			{	
+				var id = id;
+				var url = "{:U('Admin/User/del_members_group_user')}";
+				var gid = gid;
+				$.ajax({
+					type:'post',
+					url:url,
+					data:{id:id},
+					dataType:'json',
+					success:function(data){
+						if(data==1){
+							window.location.href='{:U("Admin/User/members_group_user")}?gid='+gid;
+						}
+					}
+				});
+				
+			}
+			else
+			{
+				return false;
+			}
+		}
+		</script>
+	</body>
+</html>

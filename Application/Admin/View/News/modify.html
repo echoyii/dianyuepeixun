@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+		<script type="text/javascript" src="__PUBLIC__/date/js/laydate.js"></script>
+		<style type="text/css">
+		.layinput{height: 22px;line-height: 22px;width: 150px;margin: 0;}
+		.laydate-icon{ height: 31px; width: 200px;}
+		</style>
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/News/modify')}" method="POST" enctype="multipart/form-data">
+									<div class="space-4"></div>
+									<input type="text" hidden="hidden" value="{$list['id']}" name="id">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 资讯标题: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="" class="col-xs-10 col-sm-8" name="title" value="{$list['title']}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 作者来源: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="{$list['author']}" class="col-xs-10 col-sm-8" name="author">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 资讯略缩图: </label>
+										<div class="col-sm-8">
+											<img style="width:400px; height:200px;" src="{$list['thumb']}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 上传新图: </label>
+										<div class="col-sm-8">
+											<input type="file" id="form-field-2" class="col-xs-10 col-sm-5" name="thumb">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 资讯简介: </label>
+										<div class="col-sm-8">
+											<textarea class="form-control limited" id="form-field-9" maxlength="50" style="margin: 0px -11.3438px 0px 0px; width: 526px; height: 137px;" name="description">{$list['description']}</textarea>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 发布时间: </label>
+										<div class="row">
+											<div class="col-xs-8 col-sm-4">
+											<input placeholder="{$list['stime']|date="Y-m-d",###}" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD'})" name="stime">
+											</div>
+										</div>			
+									</div>						
+									<div class="space-4"></div>
+						
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 内容: </label>
+										<div class="col-sm-9">
+											 <script id="container" name="content" type="text/plain">
+											 {$list['content']}
+											 </script>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 排序: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="" class="col-xs-10 col-sm-8" name="rank" value="{$list['rank']}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												保存
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/News/lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+<!-- 									</div><! /row --> 
+
+								</form>
+							</div>
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+	<!-- 加载编辑器的容器 -->
+    <script id="container" name="content" type="text/plain">
+        这里写你的初始化内容
+    </script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container');
+    </script>
+		<include file="Index/footer" />
+	</body>
+</html>

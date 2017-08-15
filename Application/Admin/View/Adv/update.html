@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/Adv/update')}" method="POST" enctype="multipart/form-data">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 终端选择: </label>
+										<div class="radio" style="float:left; margin-right:10px; margin-top:-4px;">
+											<label>
+												<input name="ttype" type="radio" class="ace" value="1" <if condition="$list.ttype eq 1">checked="checked" </if> />
+												<span class="lbl"> 微信端广告</span>
+											</label>
+										</div>
+										<div class="radio" style="float:left; margin-right:10px; margin-top:-4px;">
+											<label>
+												<input name="ttype" type="radio" value="2" class="ace" <if condition="$list.ttype eq 2">checked="checked" </if> >
+												<span class="lbl"> APP端广告</span>
+											</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 广告类型: </label>
+										<div class="radio" style="float:left; margin-right:10px; margin-top:-4px;">
+											<label>
+												<input name="type" id="fd_adv" type="radio" class="ace" value="0" <if condition="$list.type eq 0">checked="checked" </if>>
+												<span class="lbl"> 项目广告</span>
+											</label>
+										</div>
+
+										<div class="radio" style="float:left; margin-right:10px; margin-top:-4px;">
+											<label>
+												<input name="type" id="url_adv" type="radio" value="1" class="ace" <if condition="$list.type eq 1">checked="checked" </if>>
+												<span class="lbl"> 链接广告</span>
+											</label>
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group" id="fd_id">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 目标项目ID: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="目标项目ID" class="col-xs-10 col-sm-8" name="fdid" value="{$list['fdid']}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<input type="text" value="{$list['id']}" hidden="hidden" name="id" />
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 标题: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="" class="col-xs-10 col-sm-8" name="title" value="{$list['title']}" />
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+										<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 略缩图: </label>
+										<div class="col-sm-8">
+											<img style="border:1px solid #32a3ce;" src="{$list['img']}">
+										</div>
+										</div>
+									<div class="space-4"></div>
+	
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 选择略缩图: </label>
+										<div class="col-sm-8">
+											<input type="file" id="form-field-2" class="col-xs-10 col-sm-5" name="photo">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group" id="url_type">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 外链类型: </label>
+										<div class="radio" style="float:left; margin-right:10px; margin-top:-4px;">
+											<label>
+												<input name="isoutlink" type="radio" value="1" class="ace" id="without_url" <if condition="$list.isoutlink eq 1">checked="checked"</if>>
+												<span class="lbl"> 外部链接</span>
+											</label>
+										</div>
+
+										<div class="radio" style="float:left; margin-right:10px; margin-top:-4px;">
+											<label>
+												<input name="isoutlink" type="radio" value="0" class="ace" id="insize_url" <if condition="$list.isoutlink eq 0">checked="checked"</if>>
+												<span class="lbl">  内部链接</span>
+											</label>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 广告状态: </label>
+										<div class="radio" style="float:left; margin-right:10px; margin-top:-4px;">
+											<label>
+												<input name="state" type="radio" value="1" class="ace" <if condition="$list.state eq 1"> checked="checked" </if>>
+												<span class="lbl"> 显示</span>
+											</label>
+										</div>
+
+										<div class="state" style="float:left; margin-right:10px; margin-top:3px;">
+											<label>
+												<input name="state" type="radio" value="0" class="ace" <if condition="$list.state eq 0">checked="checked" </if> >
+												<span class="lbl"> 隐藏</span>
+											</label>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group" id="url_location">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 链接地址: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="" value="{$list['url']}" class="col-xs-10 col-sm-8" name="url">
+										</div>
+									</div>
+									<div class="space-4"></div>
+						
+									<div class="form-group" id="fd_content">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 内容: </label>
+										<div class="col-sm-9">
+											 <script id="container" name="content" type="text/plain">
+											 {$list['content']}
+											 </script>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 排序: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="排序：数字越大越靠前" class="col-xs-10 col-sm-8" name="rank" value="{$list['rank']}" >
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												保存
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/Adv/lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+									</div><!-- /row -->
+
+								</form>
+
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+	<!-- 加载编辑器的容器 -->
+    <script id="container" name="content" type="text/plain">
+        这里写你的初始化内容
+    </script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container');
+
+
+        $(document).ready(function(){
+
+        	if($("#fd_adv").prop("checked")){
+        		$("#url_type").hide();
+        		$("#url_location").hide();
+        		$("#fd_content").hide();
+        	}
+
+        	if($("#url_adv").prop("checked")){
+        		$("#url_type").show();
+        		$("#fd_id").hide();
+        		$("#fd_content").show();
+
+        		if($("#without_url").prop("checked")){
+        			$("#url_location").show();
+        			$("#fd_content").hide();
+	        	} 
+	        	if($("#insize_url").prop("checked")){
+	        		$("#url_location").hide();
+	        		$("#fd_content").show();
+	        	}
+        	}
+        	
+
+        	$("#fd_adv").bind("click",function(){
+        		$("#url_type").hide();
+        		$("#url_location").hide();
+        		$("#fd_id").show();
+        		$("#fd_content").hide();
+        	});
+
+        	$("#url_adv").bind("click",function(){
+        		$("#url_type").show();
+        		// $("#url_location").show();
+        		$("#fd_id").hide();
+        		// $("#fd_content").show();
+        	});
+
+        	$("#without_url").bind("click",function(){
+        		$("#url_location").show();
+        		$("#fd_content").hide();
+        	});
+        	$("#insize_url").on("click",function(){
+        		$("#url_location").hide();
+        		$("#fd_content").show();
+        	});	
+        });
+    </script>
+		<include file="Index/footer" />
+	</body>
+</html>

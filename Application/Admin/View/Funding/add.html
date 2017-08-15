@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/jquerydate/css/jcDate.css" media="all" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/daterangepicker.css" />
+		<script type="text/javascript" src="__PUBLIC__/date/js/laydate.js"></script>
+
+		<style type="text/css">
+
+
+		.box{width:970px; padding:10px 20px; background-color:#fff; margin:10px auto;}
+		.box a{padding-right:20px;}
+
+		.layinput{height: 22px;line-height: 22px;width: 150px;margin: 0;}
+		.laydate-icon{ height: 31px; width: 200px;}
+		</style>
+	</head>
+	<body>
+
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/Funding/add')}" method="POST" enctype="multipart/form-data">
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 项目名: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="项目名" class="col-xs-10 col-sm-8" name="pjname">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 产品名: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="产品名" class="col-xs-10 col-sm-8" name="pdname">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 品牌名: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="品牌名" class="col-xs-10 col-sm-8" name="brand">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 众测故事: </label>
+										<div class="col-sm-4">
+											<div class="widget-box">
+												<div class="widget-header widget-header-small header-color-blue">  </div>
+												<div class="widget-body">
+													<div class="widget-main no-padding">
+														<textarea class="span12 md-input" name="content" data-provide="markdown" rows="10" style="resize: none;"></textarea>
+													</div>
+													<div class="widget-toolbox padding-4 clearfix">
+														<div class="btn-group pull-left">
+														</div>
+														<div class="btn-group pull-right">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 选择所属分类: </label>
+
+										<div class="col-sm-9">
+											<!-- <input type="password" id="form-field-2" placeholder="再次输入密码" class="col-xs-10 col-sm-5" name="password2"> -->
+											<label> 一级分类: </label>
+											<select name="first_categoryid" id="classify">
+											<option value="">一级分类</option>
+											<volist name="list" id="vo">
+											<option value="{$vo.id}">{$vo.name}</option>
+											</volist>
+											</select>
+																					&nbsp;&nbsp;&nbsp;
+											<label> 二级分类: </label>
+											<select name="second_categoryid" id="classify_son">
+											<option value="">二级分类</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 选择套餐: </label>
+
+										<div class="col-sm-9">
+											<!-- <input type="password" id="form-field-2" placeholder="再次输入密码" class="col-xs-10 col-sm-5" name="password2"> -->
+											<select name="packageid" id="classify">
+											<option value="">选择套餐</option>
+											<volist name="fundings_packageid" id="packageid">
+											<option value="{$packageid.id}">{$packageid.name}</option>
+											</volist>
+											</select>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 检测机构选择: </label>
+
+										<div class="col-sm-9">
+											<!-- <input type="password" id="form-field-2" placeholder="再次输入密码" class="col-xs-10 col-sm-5" name="password2"> -->
+											<select name="institutionid" id="classify">
+											<option value="">检测机构</option>
+											<volist name="institutionid" id="inst">
+											<option value="{$inst.id}">{$inst.name}</option>
+											</volist>
+											</select>
+
+										</div>
+									</div>
+									
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 所需筹金(单位:分): </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="所需筹金" class="col-xs-10 col-sm-8" name="emoney">
+										</div>
+									</div>
+
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 项目状态: </label>
+										<div class="radio" style="float:left; margin-right:10px; margin-top:-4px;">
+											<label>
+												<input name="state" type="radio" value="0" class="ace" checked="checked">
+												<span class="lbl"> 待审核</span>
+											</label>
+										</div>
+
+										<div class="state" style="float:left; margin-right:10px; margin-top:3px;">
+											<label>
+												<input name="state" disabled="disabled" type="radio" value="1" class="ace" >
+												<span class="lbl"> 众筹中</span>
+											</label>
+										</div>
+										<div class="state" style="float:left; margin-right:10px; margin-top:3px;">
+											<label>
+												<input name="state" disabled="disabled" type="radio" value="2" class="ace" >
+												<span class="lbl"> 抽检中</span>
+											</label>
+										</div>
+										<div class="state" style="float:left; margin-right:10px; margin-top:3px;">
+											<label>
+												<input name="state" disabled="disabled" type="radio" value="3" class="ace" >
+												<span class="lbl"> 已完成</span>
+											</label>
+										</div>
+										<div class="state" style="float:left; margin-right:10px; margin-top:3px;">
+											<label>
+												<input name="state" disabled="disabled" type="radio" value="4" class="ace" >
+												<span class="lbl"> 异常项目</span>
+											</label>
+										</div>
+									</div>
+									
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 时间: </label>
+										<div class="row">
+											<div class="col-xs-8 col-sm-4">
+											<input placeholder="选择开始时间" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="btime">
+											<input placeholder="选择结束时间" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="etime">
+											</div>
+										</div>			
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 发起人手机号: </label>
+										<div class="col-sm-9">
+											<input type="text" id="select_keywords_mobile" placeholder="输入手机号进行搜索" class="col-xs-10 col-sm-8">
+										</div>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> </label>
+										<div class="col-sm-9">
+											<select name="mid" id="select_members_mobile" class="col-sm-8" hidden="hidden">
+											<option value=""></option>
+											</select>
+										</div>
+											
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 抽样数量: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="抽样数量" class="col-xs-10 col-sm-8" name="samnum">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 抽样地址: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="抽样地址" class="col-xs-10 col-sm-8" name="location">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 样品单价: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="样品单价" class="col-xs-10 col-sm-8" name="smoney">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 项目排序: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="数字越大越靠前" class="col-xs-10 col-sm-8" name="rank">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 已完成金额: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="已完成金额" class="col-xs-10 col-sm-8" name="finish">
+										</div>
+									</div>
+								
+									<hr />
+
+									<div class="space-4"></div>
+									<div class="form-group">
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												添加
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/Funding/all_lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+								</form>
+							</div>
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<include file="Index/footer" />
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("#classify").change(function(){
+				$("#classify_son").empty();
+				var id=$("#classify").val();
+				var url="{:U('Admin/Funding/ready_classify')}"
+				$.ajax({
+					type:'post',
+					url:url,
+					data:{id:id},
+					dataType:'json',
+					success: function(data){
+						var str='';
+						$.each(data,function(k,v){
+							str+="<option value='"+v['id']+"'>";
+							str+=v['name']+"</option>";
+
+						});
+
+						$("#classify_son").append(str);
+					}
+				});
+			});
+
+
+			$("#select_keywords_mobile").bind('input propertychange',function(){
+				var select_keywords = $(this).val();
+				var url = "{:U('Admin/Funding/select_members_mobile')}";
+				$.ajax({
+					type: 'post',
+					url: url,
+					data: {select_keywords:select_keywords},
+					dataType: 'json',
+					success: function(data){
+						var str = '';
+						$.each(data,function(k,v){
+
+							str += "<option value='"+v['id']+"'>"+v['username']+"("+v['mobile']+")"+"</option>";
+						});
+
+						var str_len = data.length;
+						$("#select_members_mobile").show();
+						$("#select_members_mobile").attr('size',str_len);
+						$("#select_members_mobile").empty();
+						$("#select_members_mobile").append(str);
+					}
+				});
+			});
+
+			$("#select_members_mobile").bind('click',function(){
+				var name = $(this).find("option:selected").text();
+				// alert(name);
+				$("#select_keywords_mobile").val(name);
+				$("#select_members_mobile").hide();
+			});
+		});
+
+		</script>
+	</body>
+</html>

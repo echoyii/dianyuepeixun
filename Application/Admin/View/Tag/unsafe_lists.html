@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+		<style type="text/css">
+		.dl_dd dd{ text-align: center; margin-top: 30px;}
+		.hidden_div{ border:3px solid #307ecc;}
+		.hidden_div2{ border:3px solid #307ecc;}
+		</style>
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="table-header">
+									标签列表
+								</div>
+
+								<div class="table-responsive">
+									<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+									<div class="row">
+									<div class="col-sm-6">
+									<div id="sample-table-2_length" class="dataTables_length">
+
+									</div>
+									</div>
+									<div class="col-sm-6" style="margin-bottom:-20px;">
+									<div class="dataTables_filter" id="sample-table-2_filter">
+									<label>搜索: <input type="text" aria-controls="sample-table-2">
+										<p style="margin-top:20px;"><button type="button" class="btn btn-white">添加标签</button></p>
+									</label>
+									</div>
+									</div>
+									</div>
+									<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+										<thead>
+											<tr role="row"><th  role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 10%;">ID</th>
+											<th  role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 20%;">标签名</th>
+											<th  role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 20%;">排序</th>
+											<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 10%;">管理</th></tr>
+										</thead>
+				
+									<tbody role="alert" aria-live="polite" aria-relevant="all">
+									<volist name="list" id="vo">
+									<tr class="odd">
+										<td class=" ">
+										{$vo.id}
+										</td>
+										<td class=" ">
+										{$vo.keyword}
+										</td>
+										<td class=" ">
+										{$vo.rank}
+										</td>
+										<td class=" ">
+										<div class="btn-group">
+											<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+												<a class="green" href="#" tid="{$vo.id}" keyword="{$vo.keyword}" rank="{$vo.rank}">
+													<i class="icon-pencil bigger-130" title="修改" ></i>
+												</a>
+											
+												<a class="red" href="#" tid="{$vo.id}">
+													<i class="icon-trash bigger-130" title="删除" ></i>
+												</a>
+											</div>
+											
+											<div class="visible-xs visible-sm hidden-md hidden-lg">
+												<div class="inline position-relative">
+													<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+														<i class="icon-caret-down icon-only bigger-120"></i>
+													</button>
+											
+													<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+														<li>
+															<a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+																<span class="green">
+																	<i class="icon-edit bigger-120"></i>
+																</span>
+															</a>
+														</li>
+											
+														<li>
+															<a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete">
+																<span class="red">
+																	<i class="icon-trash bigger-120"></i>
+																</span>
+															</a>
+														</li>
+											
+													</ul>
+												</div>
+											</div>
+										</td>
+									</tr>
+									</volist>
+									</tbody>
+									</table>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="dataTables_info" id="sample-table-2_info"></div>
+										</div>
+										<div class="col-sm-6">
+
+											<div class="dataTables_paginate paging_bootstrap">
+
+										<!-- 	{$show} -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="hidden_div" hidden="hidden" style=" width:500px; height:250px; background-color:#fff; position:fixed; left:40%; top:40%;">
+								<!-- PAGE CONTENT BEGINS -->
+								<form action="{:U('Admin/Tag/add_unsafe_tag')}" method="POST">
+									<dl class="dl_dd">
+										<dd>
+											<label>标签名:</label>
+											<input type="text" name="keyword" />
+										</dd>
+										<dd style="margin-left:10px;">
+											<label>排序:</label>
+											<input type="text" placeholder="数字越大越靠前" name="rank" />
+										</dd>
+										<dd>
+											<button type="submit">添加</button>
+											<button type="button" id="unset">取消</button>
+										</dd>
+									</dl>
+								</form>
+							</div>
+
+
+							<div class="hidden_div2" hidden="hidden" style=" width:500px; height:250px; background-color:#fff; position:fixed; left:40%; top:40%;">
+								<!-- PAGE CONTENT BEGINS -->
+								<form action="{:U('Admin/Tag/modify_unsafe_tag')}" method="POST">
+									<input type="text" id="tag_id" name="id" hidden="hidden" />
+									<dl class="dl_dd">
+										<dd>
+											<label>标签名:</label>
+											<input type="text" id="tag_name" name="keyword" />
+										</dd>
+										<dd style="margin-left:10px;">
+											<label>排序:</label>
+											<input type="text" id="tag_rank" placeholder="数字越大越靠前" name="rank" />
+										</dd>
+										<dd>
+											<button type="submit">修改</button>
+											<button type="button" id="unset2">取消</button>
+										</dd>
+									</dl>
+								</form>
+							</div>
+						</div>
+						
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<include file="Index/footer" />
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$(".btn-white").bind('click',function(){
+				$(".hidden_div").show();
+			});
+
+			$("#unset").bind('click',function(){
+				$(".hidden_div").hide();
+			});
+
+			$(".red").bind('click',function(){
+				var rs = confirm('确定删除该标签?');
+				if(rs){
+
+					var url = "{:U('Admin/Tag/del_unsafe_tag')}";
+					var id = $(this).attr('tid');
+					$.ajax({
+						type:'post',
+						url:url,
+						data:{id:id},
+						dataType:'json',
+						success:function(data){
+							if(data==1){
+
+								window.location.href="{:U('Admin/Tag/unsafe_lists')}";
+							}else{
+
+								alert('删除失败!');
+							}
+						}
+					});
+				}else{
+
+					return false;
+				}
+			});
+
+
+			$(".green").bind('click',function(){
+				$(".hidden_div2").show();
+
+				var id = $(this).attr('tid');
+				$("#tag_id").val(id);
+				var keyword = $(this).attr('keyword');
+				// alert(tag_name);
+				$("#tag_name").val(keyword);
+				var rank = $(this).attr('rank');
+				// alert(rank);
+				$("#tag_rank").val(rank);
+			});
+
+			$("#unset2").bind('click',function(){
+				$(".hidden_div2").hide();
+			});
+		});
+		</script>
+	</body>
+</html>

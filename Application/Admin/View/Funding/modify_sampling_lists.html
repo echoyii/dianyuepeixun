@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<include file="Index/head" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/jquerydate/css/jcDate.css" media="all" />
+	<link rel="stylesheet" href="__PUBLIC__/assets/css/daterangepicker.css" />
+	<script type="text/javascript" src="__PUBLIC__/date/js/laydate.js"></script>
+	<style type="text/css">
+	.box{width:970px; padding:10px 20px; background-color:#fff; margin:10px auto;}
+	.box a{padding-right:20px;}
+	.layinput{height: 22px;line-height: 22px;width: 150px;margin: 0;}
+	.laydate-icon{ height: 31px; width: 200px;}
+	.col-sm-9{ font-size: 18px;}
+	</style>
+	</head>
+	<body>
+
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/Funding/modify_sampling_lists')}" method="POST" enctype="multipart/form-data">
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 项目名: </label>
+										<div class="col-sm-9">
+											{$list.pjname}
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 产品名: </label>
+										<div class="col-sm-9">
+											{$list.pdname}
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 品牌名: </label>
+										<div class="col-sm-9">
+											{$list.brand}
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 产品批号: </label>
+										<div class="col-sm-9">
+											{$list.batch}
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 产品图: </label>
+										<div class="col-sm-9">
+											<!-- PAGE CONTENT BEGINS -->
+												<div class="row-fluid">
+													<ul class="ace-thumbnails">
+													<volist name="list.member_upload_imgs" id="vo">
+														<li>
+															<a href="#" data-rel="colorbox" class="cboxElement">
+																<img alt="" src="{$vo.img_url}" style="width:100px; height:150px;">
+															</a>
+														</li>
+													</volist>
+													</ul>
+												</div><!-- PAGE CONTENT ENDS -->
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 众测故事: </label>
+										<div class="col-sm-4">
+											<div class="widget-box">
+												<div class="widget-header widget-header-small header-color-blue">  </div>
+												<div class="widget-body">
+													<div class="widget-main no-padding">
+														<textarea class="span12 md-input" disabled data-provide="markdown" rows="10" style="resize: none;">{$list.content}</textarea>
+													</div>
+													<div class="widget-toolbox padding-4 clearfix">
+														<div class="btn-group pull-left">
+														</div>
+														<div class="btn-group pull-right">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<input type="text" value="{$list.id}" name="id" hidden="hidden" />
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 选择所属分类: </label>
+
+										<div class="col-sm-9">
+											{$list['first_categoryid']}&nbsp;&nbsp;&nbsp;&nbsp;{$list['second_categoryid']}
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 选择套餐: </label>
+										<div class="col-sm-9">
+											{$list.packageid}
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 检测机构选择: </label>
+										<div class="col-sm-9">
+										{$list.institutionid}
+										</div>
+									</div>
+									
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 目标金额: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" disabled class="col-xs-10 col-sm-8" value="{$list['target_money']/100}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 检测金额: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" disabled class="col-xs-10 col-sm-8" value="{$list['emoney']/100}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 已筹金额: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2"  class="col-xs-10 col-sm-8" disabled value="{$list['finish_money']/100}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 时间: </label>
+										<div class="row">
+											<div class="col-xs-8 col-sm-4">
+											<input placeholder="选择开始时间" disabled class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$list.btime|date="Y-m-d H:i:s",###}">
+											<input placeholder="选择结束时间" disabled class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$list.etime|date="Y-m-d H:i:s",###}">
+											</div>
+										</div>			
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 发起人: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" disabled="disabled" class="col-xs-10 col-sm-8" value="{$list.username}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 抽样数量: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" disabled class="col-xs-10 col-sm-8" value="{$list.samnum}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 抽样地址: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" class="col-xs-10 col-sm-8" disabled value="{$list.location}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 样品单价: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" class="col-xs-10 col-sm-8" disabled value="{$list['smoney']/100}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 排序: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" class="col-xs-10 col-sm-8" disabled value="{$list.rank}">
+										</div>
+									</div>
+									<hr />
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 检测证书pdf: </label>
+										<div class="col-sm-8" id="photot" >
+											<input type="file" id="form-field-2" class="col-xs-10 col-sm-10" name="report_pdf" required="required">
+										</div>
+										<?php if(!empty($list['testreport']['download'])){?>
+										<a href="<?php echo $list['testreport']['download']; ?>" target='_blank'>查看证书pdf</a>
+										<?php } ?>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 检测证书jpg: </label>
+										<div class="col-sm-8" id="photot" >
+											<input type="file" id="form-field-2" class="col-xs-10 col-sm-10" name="report_jpg" required="required">
+										</div>
+										<?php if(!empty($list['testreport']['download_jpg'])){?>
+										<a href="<?php echo $list['testreport']['download_jpg']; ?>" target='_blank'>查看证书jpg</a>
+										<?php } ?>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 检测日期: </label>
+										<div class="row">
+											<div class="col-xs-8 col-sm-4">
+											<input placeholder="选择检测日期" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="testreport_btime" value="" required="required">
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 发布日期: </label>
+										<div class="row">
+											<div class="col-xs-8 col-sm-4">
+											<input placeholder="选择发布日期" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="testreport_ctime" value="" required="required">
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 送检编号: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="送检编号" class="col-xs-10 col-sm-8" name="testreport_code" value="" required="required">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 产品批次: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="抽检样品产品批次" class="col-xs-10 col-sm-8" name="batch" required="required">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 检测结果解析: </label>
+										<div class="col-sm-9">
+											<script id="container" name="testreport_content" type="text/plain">
+											 填写你的内容
+											 </script>
+										</div>
+									</div>
+						
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 检测结果: </label>
+										<div class="radio" style="float:left; margin-right:10px; margin-top:-4px;">
+											<label>
+												<input name="result" type="radio" value="1" class="ace" checked="checked">
+												<span class="lbl"> 合格</span>
+											</label>
+										</div>
+
+										<div class="state" style="float:left; margin-right:10px; margin-top:3px;">
+											<label>
+												<input name="result" type="radio" value="2" class="ace" >
+												<span class="lbl"> 不合格</span>
+											</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 关联产品: </label>
+										<div class="col-sm-9">
+											<input type="text" id="select_keywords" placeholder="输入要搜索的关联产品" class="col-xs-10 col-sm-8" value="">
+											<select name="pid" id="select_keywords_result" class="col-xs-10 col-sm-8" hidden="hidden">
+											<!-- <option value=""></option> -->
+											</select>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												保存
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/Funding/sampling_lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+									<div class="hr hr-24"></div>
+								</form>
+							</div>
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+	
+		<include file="Index/footer" />
+		<!-- 加载编辑器的容器 -->
+    <script id="container" name="content" type="text/plain">
+        这里写你的初始化内容
+    </script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container');
+    </script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("#classify").change(function(){
+				$("#classify_son").empty();
+				var id=$("#classify").val();
+				var url="{:U('Admin/Funding/ready_classify')}"
+				$.ajax({
+					type:'post',
+					url:url,
+					data:{id:id},
+					dataType:'json',
+					success: function(data){
+						var str='';
+						$.each(data,function(k,v){
+							str+="<option value='"+v['id']+"'>";
+							str+=v['name']+"</option>";
+
+						});
+
+						$("#classify_son").append(str);
+					}
+				});
+			});
+
+			$('#select_keywords').bind('input propertychange', function() {
+				var select_keywords = $(this).val();
+				var url = "{:U('Admin/Funding/select_product_name')}";
+				$.ajax({
+					type: 'post',
+					url: url,
+					data:{select_keywords:select_keywords},
+					dataType: 'json',
+					success: function(data){
+						var str = '';
+						$.each(data,function(k,v){
+							str+="<option value='"+v['id']+"'>";
+							str+=v['name']+"</option>";
+						});
+						var str_len = data.length;
+						$("#select_keywords_result").show();
+						$("#select_keywords_result").attr('size',str_len);
+						$("#select_keywords_result").empty();
+						$("#select_keywords_result").append(str);
+					}
+				});
+			}); 
+
+			$("#select_keywords_result").bind('click',function(){
+				var name = $(this).find("option:selected").text();
+				// alert(name);
+				$("#select_keywords").val(name);
+				$("#select_keywords_result").hide();
+			});
+		});
+
+
+		/**
+		 * ajax删除用户上传的样品图
+		 */
+		function ajax_del_member_upload_imgs(id){
+			// alert(window.location.host); return;
+			var this_url = window.location.href;
+			var r = confirm("确定删除该照片?");
+			if(r){
+				var fid = id;
+				var mupid = $(".icon-remove").attr('mupid');
+				var url = "{:U('Admin/Funding/ajax_del_member_upload_imgs')}";
+				$.ajax({
+					type:'post',
+					url:url,
+					data:{fid:fid,mupid:mupid},
+					dataType:'json',
+					success:function(data){
+						if(data==1){
+							window.location.href=this_url;
+						}
+					}
+				});
+			}else{
+				return false;
+			}
+			
+		}
+		</script>
+
+	</body>
+</html>

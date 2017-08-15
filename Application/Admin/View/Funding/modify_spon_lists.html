@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<include file="Index/head" />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/jquerydate/css/jcDate.css" media="all" />
+	<link rel="stylesheet" href="__PUBLIC__/assets/css/daterangepicker.css" />
+	<script type="text/javascript" src="__PUBLIC__/date/js/laydate.js"></script>
+	<style type="text/css">
+	.box{width:970px; padding:10px 20px; background-color:#fff; margin:10px auto;}
+	.box a{padding-right:20px;}
+	.layinput{height: 22px;line-height: 22px;width: 150px;margin: 0;}
+	.laydate-icon{ height: 31px; width: 200px;}
+	</style>
+	</head>
+	<body>
+
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/Funding/modify_spon_lists')}" method="POST">
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 项目名: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="项目名" class="col-xs-10 col-sm-8" name="pjname" value="{$list.pjname}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 产品名: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="产品名" class="col-xs-10 col-sm-8" name="pdname" value="{$list.pdname}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 品牌名: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="品牌名" class="col-xs-10 col-sm-8" name="brand" value="{$list.brand}">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 产品图: </label>
+										<div class="col-sm-9">
+											<!-- PAGE CONTENT BEGINS -->
+												<div class="row-fluid">
+													<ul class="ace-thumbnails">
+													<volist name="list.member_upload_imgs" id="vo">
+														<li>
+															<a href="#" data-rel="colorbox" class="cboxElement">
+																<img alt="" src="{$vo.img_url}" style="width:100px; height:150px;">
+															</a>
+
+															<div class="tools tools-top">
+																<a href="javascript:ajax_del_member_upload_imgs({$list.id})">
+																	<i class="icon-remove red" mupid="{$vo.id}"></i>
+																</a>
+
+															</div>
+														</li>
+													</volist>
+													</ul>
+												</div><!-- PAGE CONTENT ENDS -->
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 众测故事: </label>
+										<div class="col-sm-4">
+											<div class="widget-box">
+												<div class="widget-header widget-header-small header-color-blue">  </div>
+												<div class="widget-body">
+													<div class="widget-main no-padding">
+														<textarea class="span12 md-input" name="content" data-provide="markdown" rows="10" style="resize: none;">{$list.content}</textarea>
+													</div>
+													<div class="widget-toolbox padding-4 clearfix">
+														<div class="btn-group pull-left">
+														</div>
+														<div class="btn-group pull-right">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<input type="text" value="{$list.id}" name="id" hidden="hidden" />
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 选择所属分类: </label>
+
+										<div class="col-sm-9">
+											<!-- <input type="password" id="form-field-2" placeholder="再次输入密码" class="col-xs-10 col-sm-5" name="password2"> -->
+											<label> 一级分类: </label>
+											<select name="first_categoryid" id="classify">
+											<option value="">一级分类</option>
+											<volist name="classify" id="cvo">
+											<option value="{$cvo.id}">{$cvo.name}</option>
+											</volist>
+											</select>
+																					&nbsp;&nbsp;&nbsp;
+											<label> 二级分类: </label>
+											<select name="second_categoryid" id="classify_son">
+											<option value="">二级分类</option>
+											</select>
+
+											<label style="color:red; margin-left:20px;"><b>{$list['first_categoryid']}&nbsp;&nbsp;&nbsp;&nbsp;{$list['second_categoryid']}</b></label>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 选择套餐: </label>
+
+										<div class="col-sm-9">
+											<!-- <input type="password" id="form-field-2" placeholder="再次输入密码" class="col-xs-10 col-sm-5" name="password2"> -->
+											<select name="packageid" id="classify">
+											<option value="">选择套餐</option>
+											<volist name="fundings_packageid" id="packageid">
+											<option value="{$packageid.id}">{$packageid.name}</option>
+											</volist>
+											</select>
+											<label style="color:red; margin-left:20px;"><b>{$list.packageid}</b></label>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 检测机构选择: </label>
+
+										<div class="col-sm-9">
+											<!-- <input type="password" id="form-field-2" placeholder="再次输入密码" class="col-xs-10 col-sm-5" name="password2"> -->
+											<select name="institutionid" id="classify">
+											<option value="">检测机构</option>
+											<volist name="institutionid" id="inst">
+											<option value="{$inst.id}">{$inst.name}</option>
+											</volist>
+											</select>
+											<label style="color:red; margin-left:20px;"><b>{$list.institutionid}</b></label>
+
+										</div>
+									</div>
+									
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 目标金额: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="所需筹金" class="col-xs-10 col-sm-8" value="{$list['target_money']/100}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 检测金额: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="所需筹金" class="col-xs-10 col-sm-8" name="emoney"value="{$list['emoney']/100}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 已筹金额: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="所需筹金" class="col-xs-10 col-sm-8"   value="{$list['finish_money']/100}">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 时间: </label>
+										<div class="row">
+											<div class="col-xs-8 col-sm-4">
+											<input placeholder="选择开始时间" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="btime" value="{$list.btime|date="Y-m-d H:i:s",###}">
+											<input placeholder="选择结束时间" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="etime" value="{$list.etime|date="Y-m-d H:i:s",###}">
+											</div>
+										</div>			
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 发起人: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" disabled="disabled" placeholder="" class="col-xs-10 col-sm-8" name="mid" value="{$list.username}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 抽样数量: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="抽样数量" class="col-xs-10 col-sm-8" name="samnum" value="{$list.samnum}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 抽样地址: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="抽样地址" class="col-xs-10 col-sm-8" name="location" value="{$list.location}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 样品单价: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="样品单价" class="col-xs-10 col-sm-8" name="smoney" value="{$list['smoney']/100}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 产品批号: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="产品批号" class="col-xs-10 col-sm-8" name="batch" value="{$list.batch}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 排序: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="抽样地址" class="col-xs-10 col-sm-8" name="rank" value="{$list.rank}">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												保存
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/Funding/spon_lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+									<div class="hr hr-24"></div>
+								</form>
+							</div>
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+	
+		<include file="Index/footer" />
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("#classify").change(function(){
+				$("#classify_son").empty();
+				var id=$("#classify").val();
+				var url="{:U('Admin/Funding/ready_classify')}"
+				$.ajax({
+					type:'post',
+					url:url,
+					data:{id:id},
+					dataType:'json',
+					success: function(data){
+						var str='';
+						$.each(data,function(k,v){
+							str+="<option value='"+v['id']+"'>";
+							str+=v['name']+"</option>";
+						});
+
+						$("#classify_son").append(str);
+					}
+				});
+			});
+
+		});
+
+
+		/**
+		 * ajax删除用户上传的样品图
+		 */
+		function ajax_del_member_upload_imgs(id){
+			// alert(window.location.host); return;
+			var this_url = window.location.href;
+			var r = confirm("确定删除该照片?");
+			if(r){
+				var fid = id;
+				var mupid = $(".icon-remove").attr('mupid');
+				var url = "{:U('Admin/Funding/ajax_del_member_upload_imgs')}";
+				$.ajax({
+					type:'post',
+					url:url,
+					data:{fid:fid,mupid:mupid},
+					dataType:'json',
+					success:function(data){
+						if(data==1){
+							window.location.href=this_url;
+						}
+					}
+				});
+			}else{
+				return false;
+			}
+			
+		}
+		</script>
+
+	</body>
+</html>

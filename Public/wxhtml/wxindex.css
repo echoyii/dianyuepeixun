@@ -1,0 +1,8 @@
+.remove_style{ background-color: #ffffff; border: 0px solid #ffffff; margin-top: 20px;}
+[class*=blend-col-]{padding:0;}
+.blend-picture-default{ margin:0; margin-right: -10px;}
+.blend-picture-default img{ margin: 0;}
+.blend-row{ margin:0;}
+#down_button{ position:absolute; margin-left: 40%; margin-top: 33%; }
+
+

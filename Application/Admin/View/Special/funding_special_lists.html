@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+<style type="text/css">
+	#pop_up{ width: 500px; height: 230px; border-top: 10px solid #307ecc; border-bottom: 10px solid #307ecc; background: #ffffff; position:fixed; left:40%; top:40%;}
+	#pop_up p{ float: right; position:absolute; right:10px; top:10px;}
+</style>
+		<include file="Index/head" />
+	</head>
+
+	<body>
+		<include file="Index/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+				<include file="Index/menu" />
+				<div class="main-content">
+					<include file="Index/nav" />
+					<div class="page-content">						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="table-header">
+											包含产品 
+										</div>
+										<div class="table-responsive">
+											<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+											<div class="row">
+											<div class="col-sm-6">
+											<div id="sample-table-2_length" class="dataTables_length">
+											</div>
+											</div>
+											<div class="col-sm-6" style="margin-bottom:-20px;">
+											<div class="dataTables_filter" id="sample-table-2_filter">
+											</label>
+											</div>
+											</div>
+											</div>
+											<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+												<thead>
+													<tr role="row">
+													<th class="center" style="width:5%;"><label><input type="checkbox" class="ace" id="check_ace"><span class="lbl"></span></label></th>
+													<th  role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">ID</th>
+													<th role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">展示图</th>
+													<th  role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">项目名</th><th role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">产品名</th>
+													<th role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">项目状态</th>
+													<th role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">创建时间</th>
+													<th role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">检测结果</th>
+													
+														<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width:20%;" ></th></tr>
+												</thead>
+											<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<!-- 循环开始出 -->
+											<volist name="list" id="vo">
+											<tr class="odd">
+												<td class="center">
+													<label>
+														<input type="checkbox" class="ace" value="{$vo.id}" name="muser">
+														<span class="lbl"></span>
+													</label>
+												</td>
+												<td class=" ">{$vo.id}</td>
+												<td class=" "><img src="{$vo.mini_thumb}" style="width:70px; height:70px;"></td>
+												<td class=" ">{$vo.pjname}</td>
+												<td class=" ">{$vo.pdname}</td>
+												<td class=" ">{$vo.state}</td>
+												<td class=" ">{$vo.ctime|date="Y-m-d H:i:s",###}</td>
+												<td class=" ">{$vo.result}</td>
+												<td class=" ">
+													<!-- <a href="#"> -->
+														<div class="btn-group dropup">
+															<button fid="{$vo.id}" sid="{$sid}" class="btn btn-xs btn-danger bind_funding">删除该产品</button>
+														</div>
+													<!-- </a> -->
+
+												</td>
+											</tr>
+											</volist>
+											<!-- 循环输出结束处 -->
+											</tbody>
+											</table>
+											<div class="space-4"></div>
+											<div class="form-group">
+											<div class="clearfix form-actions">
+												<div class="col-md-offset-3 col-md-9">								
+												<a href="javascript:history.go(-1)">
+													<button class="btn" type="button">
+														<i class="icon-undo bigger-110"></i>
+														返回
+													</button>
+												</a>
+													
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="dataTables_info" id="sample-table-2_info"></div>
+												</div>
+												<div class="col-sm-6">
+
+													<div class="dataTables_paginate paging_bootstrap">
+													<!-- {$page} -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+		<include file="Index/footer" />
+<script type="text/javascript">
+/**
+ * ajax删除产品
+ */
+$(document).ready(function(){
+	$(".bind_funding").bind('click',function(){
+		var r = confirm('确定要删除选择的项目');
+		if(r){
+			var sid = $(this).attr('sid');
+			var fid = $(this).attr('fid');
+			// alert(sid); alert(fid);
+			var now_url = window.location.href;
+			var url = "{:U('Admin/Special/del_special_funding')}";
+			$.ajax({
+				type:'post',
+				url:url,
+				data:{sid:sid,fid:fid},
+				dataType:'json',
+				success:function(data){
+					if(data==1){
+						window.location.href=now_url;
+					}
+				}
+			});
+		}else{
+			return false;
+		}
+	});
+});
+
+	
+</script>
+	</body>
+</html>

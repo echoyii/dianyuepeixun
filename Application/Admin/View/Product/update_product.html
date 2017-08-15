@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/Product/update_product')}" method="POST" enctype="multipart/form-data">
+								<div class="space-4"></div>
+								<div class="space-4"></div>
+								<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 产品名: </label>
+
+										<div class="col-sm-9">
+											<input type="text" name="name" id="form-field-1" placeholder="产品名" class="col-xs-10 col-sm-5" value="{$list[0]['name']}">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 品牌名: </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="品牌名" class="col-xs-10 col-sm-5" name="brand" value="{$list[0]['brand']}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 原图: </label>
+
+										<div class="col-sm-9">
+											<img src="{$list[0]['imgurl']}" style=" width:200px; height:200px; ">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 选择新的产品图: </label>
+										<div class="col-sm-8">
+											<input type="file" id="form-field-2" class="col-xs-10 col-sm-5" name="product_img">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 选择所属分类: </label>
+
+										<div class="col-sm-9">
+											<!-- <input type="password" id="form-field-2" placeholder="再次输入密码" class="col-xs-10 col-sm-5" name="password2"> -->
+											<label> 一级分类: </label>
+											<select name="classify" id="classify">
+											<option value="">一级分类</option>
+											<volist name="lists" id="vo">
+											<option value="{$vo.id}">{$vo.name}</option>
+											</volist>
+											</select>
+																					&nbsp;&nbsp;&nbsp;
+											<label> 二级分类: </label>
+											<select name="classify_son" id="classify_son">
+											<option value="">二级分类</option>
+											</select>
+											&nbsp;&nbsp;&nbsp;
+											<label> 原始分类: </label>
+											<label> {$list[0]['f_classify']} -></label><label> {$list[0]['classify']['name']} </label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 条形码: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="条形码" class="col-xs-10 col-sm-5" name="barcode" value="{$list[0]['barcode']}">
+										</div>
+									</div>
+									<input type="text" name="id"  hidden="hidden"  value="{$list[0]['id']}" />
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 产品描述: </label>
+										<div class="col-sm-4">
+											<div class="widget-box">
+											<div class="widget-header widget-header-small header-color-blue">  </div>
+											<div class="widget-body">
+												<div class="widget-main no-padding">
+													<textarea class="span12 md-input" name="remark" data-provide="markdown" rows="10" style="resize: none;">{$list[0]['remark']}</textarea></div>
+												</div>
+												<div class="widget-toolbox padding-4 clearfix">
+													<div class="btn-group pull-left">
+													</div>
+													<div class="btn-group pull-right">
+													</div>
+												</div>
+											</div>
+
+										</div>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									
+									<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-2"></label>
+									&nbsp;&nbsp;&nbsp;
+									<div class="space-4"></div>
+
+									</div>
+									
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												添加
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/Product/lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+									</div><!-- /row -->
+
+								</form>
+
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<include file="Index/footer" />
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("#classify").change(function(){
+				$("#classify_son").empty();
+				var id=$("#classify").val();
+				var url="{:U('Admin/Product/ready_classify')}"
+				$.ajax({
+					type:'post',
+					url:url,
+					data:{id:id},
+					dataType:'json',
+					success: function(data){
+						var str='';
+						$.each(data,function(k,v){
+							str+="<option value='"+v['id']+"'>";
+							str+=v['name']+"</option>";
+
+						});
+
+						$("#classify_son").append(str);
+					}
+				});
+			});
+		});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+<style type="text/css">
+	#pop_up{ width: 500px; height: 230px; border-top: 10px solid #307ecc; border-bottom: 10px solid #307ecc; background: #ffffff; position:fixed; left:40%; top:40%;}
+	#pop_up p{ float: right; position:absolute; right:10px; top:10px;}
+</style>
+		<include file="Index/head" />
+	</head>
+
+	<body>
+		<include file="Index/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+				<include file="Index/menu" />
+				<div class="main-content">
+					<include file="Index/nav" />
+					<div class="page-content">						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="table-header">
+											绑定产品 
+										</div>
+										<div class="table-responsive">
+											<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+											<div class="row">
+											<div class="col-sm-6">
+											<div id="sample-table-2_length" class="dataTables_length">
+											</div>
+											</div>
+											<div class="col-sm-6" style="margin-bottom:-20px;">
+											<div class="dataTables_filter" id="sample-table-2_filter">
+											<label>搜索: <input type="text" aria-controls="sample-table-2">
+											</label>
+											</div>
+											</div>
+											</div>
+											<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+												<thead>
+													<tr role="row">
+													<th class="center" style="width:5%;"><label><input type="checkbox" class="ace" id="check_ace"><span class="lbl"></span></label></th>
+													<th  role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">ID</th>
+													<th  role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">专题名(点击查看绑定产品)</th><th role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">URL地址</th>
+														<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width:20%;" ></th></tr>
+												</thead>
+											<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<!-- 循环开始出 -->
+											<volist name="list" id="vo">
+											<tr class="odd">
+												<td class="center">
+													<label>
+														<input type="checkbox" class="ace" value="{$vo.id}" name="muser">
+														<span class="lbl"></span>
+													</label>
+												</td>
+												<td class=" ">{$vo.id}</td>
+												<td class=" "><a href="{:U('Admin/Special/funding_special_lists',array('id' => $vo['id']))}">{$vo.name}</a></td>
+												<td class=" ">{$vo.url}</td>
+												<td class=" ">
+													<a href="{:U('Admin/Special/special_bind_fundings',array('id' => $vo['id']))}">
+														<div class="btn-group dropup">
+															<button class="btn btn-xs btn-danger">绑定产品</button>
+														</div>
+													</a>
+													
+													<a href="{:U('Admin/Special/modify_special',array('id' => $vo['id']))}">
+														<div class="btn-group dropup">
+															<button class="btn btn-xs btn-info">修改</button>
+														</div>
+													</a>
+
+													<a href="javascript:del_special({$vo.id})">
+														<div class="btn-group dropup">
+															<button class="btn btn-xs btn-danger">删除</button>
+														</div>
+													</a>
+												</td>
+											</tr>
+											</volist>
+											<!-- 循环输出结束处 -->
+											</tbody>
+											</table>
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="dataTables_info" id="sample-table-2_info"></div>
+												</div>
+												<div class="col-sm-6">
+
+													<div class="dataTables_paginate paging_bootstrap">
+													<!-- {$page} -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+		<!-- //弹出层上传展示图 -->
+
+		<div id="pop_up" style="display:none;">
+			<form action="{:U('Admin/Funding/upload_imgurl')}" method="POST" enctype="multipart/form-data">
+				<p>双击关闭</p>
+				<input type="text" name="page_goto" value="0" hidden>
+				<input type="file" name="img_url" style="margin-left:10%; margin-top:7%;">
+				<input type="text" name="fid" hidden="hidden" id="fid" >
+				<input type="submit" value="上传" style="margin-left:10%; margin-top:7%;">
+			</form>
+		</div>
+
+
+		<include file="Index/footer" />
+<script type="text/javascript">
+/**
+ * ajax删除专题
+ */
+function del_special(id){
+
+	var r = confirm('确定删除该专题?');
+	if(r){
+
+		var id = id;
+		var url = "{:U('Admin/Special/del_special')}";
+		var now_url = window.location.href;
+		$.ajax({
+			type:'post',
+			url:url,
+			data:{id:id},
+			dataType:'json',
+			success:function(data){
+
+				if(data == 1){
+
+					window.location.href = now_url;
+				}
+			}
+		});
+	}else{
+
+		return false;
+	}
+}
+/*
+		$(document).ready(function(){
+			$("#pop_up").bind('dblclick',function(){
+				$("#pop_up").css('display','none');
+			});
+
+		//批量删除项目
+		//勾选全部项目
+			$("#check_ace").bind('click',function(){
+				$(".ace").prop('checked',this.checked);
+			});
+
+			//点击删除按钮将所有选择的项目删除或者只删除该条项目
+			
+			$(".red").bind('click',function(){
+				var r = confirm('确定要删除选择的项目?');
+				if(r){
+					var fid =[]; 
+					$('input[name="muser"]:checked').each(function(){ 
+						fid.push($(this).val()); 
+					});
+					if(fid.length == 0){
+						fid = $(this).attr('fid');
+					}
+					// alert(typeof(fid));
+					var url = "{:U('Admin/Funding/del_fundings')}";
+					$.ajax({
+						type: 'get',
+						url: url,
+						data: {id:fid},
+						dataType: 'json',
+						success: function(data){
+							// alert(data);
+							if(data==1){
+								window.location.href="{:U('Admin/Funding/new_lists')}";
+							}else{
+
+								alert('删除失败!');
+							}
+						}
+					});
+					
+				}else{
+
+					return false;
+				}
+			});
+
+		});*/
+
+
+		
+</script>
+	</body>
+</html>

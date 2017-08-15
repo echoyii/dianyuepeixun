@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/Product/add_son_classify')}" method="POST">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 所属父级: </label>
+
+										<div class="col-sm-9">
+											<input readonly type="text" id="form-field-1" placeholder="" value="<?php echo $list['name']; ?>" class="col-xs-10 col-sm-5">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 子分类名: </label>
+
+										<div class="col-sm-9">
+											<input type="text" name="name" id="form-field-1" placeholder="子分类名" class="col-xs-10 col-sm-5">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 是否显示: </label>
+									&nbsp;&nbsp;&nbsp;
+										<select name="state">
+										<option value="1">显示</option>
+										<option value="0">隐藏</option>
+										</select>
+									</div>
+									<input type="text" name="id" value="<?php echo $list['id']; ?>" hidden="hidden" />
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												添加
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/Product/classify_lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+									</div><!-- /row -->
+
+								</form>
+
+						</div>
+						
+
+
+
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<include file="Index/footer" />
+	</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$list['title']}</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/blendui/2.0.0/boost.min.css" />
+  <link rel="stylesheet" type="text/css" href="/Public/template/default/css/webapp.css" />
+  <script type="text/javascript" src="/Public/template/default/js/jquery.min.js"></script>
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/blendui/2.0.0/boost.min.js"></script>
+  <script type="text/javascript">
+    window.boost = $.noConflict(true);
+    </script>
+  <style>
+      .blend-panel{background-color: #fff;}
+      .content-main{
+          font-size: 1.5rem;
+      }
+      img{width: 100%;}
+  </style>
+</head>
+
+<body>
+    <header data-blend-widget="header" class="blend-header header_title_bg">
+        <span class="blend-header-left">
+        </span>
+        <span class="blend-header-title">
+            <a class="blend-header-item">{$list['title']}</a>
+        </span>
+        <span class="blend-header-right">
+        </span>
+    </header>
+    
+    <div>
+    <article class="content-main" style="width:90%; margin-left:5%;">{$list['content']}</article>
+    </div>
+    <!--菜单入口-->
+    
+    <!--菜单入口 end-->
+    
+    
+    <!--最新检测结果列表-->
+    
+    
+    <!--最新检测结果end-->
+    
+    
+    <!--底部菜单-->
+
+<!--底部菜单end-->
+    <include file="Index/wx_share_clip"/> 
+<script>
+$(function(){
+    open_loading();
+});
+// 加载的loading...
+ document.onreadystatechange = subSomething;//当页面加载状态改变的时候执行这个方法. 
+    function subSomething() 
+    { 
+        if(document.readyState === "complete") //当页面加载状态 
+        {
+            close_loading();
+
+        }
+    }
+ 
+    function open_loading()
+    {
+        var loading = boost.blend.loading();
+        loading.show();
+    }
+    
+    function close_loading()
+    {
+        $('.blend-loading').hide();
+    }
+</script>
+<include file="Index/foot_analyze"/>
+<?php require_once 'cs.php';echo '<img src="'._cnzzTrackPageView(1256622573).'" width="0" height="0"/>';?>
+</body>
+</html>

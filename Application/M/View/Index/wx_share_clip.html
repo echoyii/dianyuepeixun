@@ -1,0 +1,53 @@
+<!--微信分享的基本信息-->
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+//分享
+
+wx.config({
+    debug: false,
+    appId: '{$signPackage["appId"]}',
+    timestamp: {$signPackage["timestamp"]},
+    nonceStr: '{$signPackage["nonceStr"]}',
+    signature: '{$signPackage["signature"]}',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+// 在这里调用 API
+    wx.onMenuShareTimeline({
+        title: '{$sharedata.share_all.title}', // 分享标题
+        desc: '{$sharedata.share_all.desc}', // 分享描述
+        link: '{$sharedata.share_all.link}', // 分享链接
+        imgUrl: '{$sharedata.share_all.thumb}', // 分享图标
+        success: function () { 
+            // 用户确认分享后执行的回调函数，生成红包
+
+        },
+        cancel: function () { 
+            // 用户取消分享后执行的回调函数
+        }
+    });
+    
+    wx.onMenuShareAppMessage({
+        title: '{$sharedata.share.title}', // 分享标题
+        desc: '{$sharedata.share.desc}', // 分享描述
+        link: '{$sharedata.share.link}', // 分享链接
+        imgUrl: '{$sharedata.share.thumb}', // 分享图标
+        type: '', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () { 
+            // 用户确认分享后执行的回调函数
+
+        },
+        cancel: function () { 
+            // 用户取消分享后执行的回调函数
+        }
+    });
+
+});
+
+</script>
+<!--微信分享的基本信息end-->

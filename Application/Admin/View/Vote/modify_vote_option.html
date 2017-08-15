@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+		<script type="text/javascript" src="__PUBLIC__/birthday/birthday.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/date/js/laydate.js"></script>
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/Vote/modify_vote_option')}" method="POST" enctype="multipart/form-data">
+									<div class="space-4"></div>
+									<div class="space-4"></div>
+									<input type="text" name="id" value="{$list[0]['id']}" hidden="hidden">
+									<input type="text" name="vsid" value="{$vsid}" hidden="hidden">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 唯一二维码: </label>
+										<div class="col-sm-9">
+											<img src="{$list[0]['qrcode_url']}" style="width:150px;" />
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名: </label>
+										<div class="col-sm-9">
+											<input type="text" value="{$list[0]['username']}" disabled="disabled" id="form-field-1" class="col-xs-10 col-sm-5">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 创建时间: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" class="col-xs-10 col-sm-5" value="{$list[0]['ctime']|date='Y-m-d H:i:s',###}" disabled="disabled">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 推荐理由: </label>
+										<div class="col-sm-4">
+											<div class="widget-box">
+												<div class="widget-header widget-header-small header-color-blue">  </div>
+												<div class="widget-body">
+													<div class="widget-main no-padding">
+														<textarea class="span12 md-input" name="content" data-provide="markdown" rows="10" style="resize: none;">{$list[0]['content']}</textarea>
+													</div>
+													<div class="widget-toolbox padding-4 clearfix">
+														<div class="btn-group pull-left">
+														</div>
+														<div class="btn-group pull-right">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="space-4"></div>
+									<!-- <div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 备注: </label>
+										<div class="col-sm-4">
+											<div class="widget-box">
+												<div class="widget-header widget-header-small header-color-blue">  </div>
+												<div class="widget-body">
+													<div class="widget-main no-padding">
+														<textarea class="span12 md-input" name="comments" data-provide="markdown" rows="10" style="resize: none;">{$list[0]['comments']}</textarea>
+													</div>
+													<div class="widget-toolbox padding-4 clearfix">
+														<div class="btn-group pull-left">
+														</div>
+														<div class="btn-group pull-right">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div> -->
+									<input type="text" name="isconfirm" value="{$isconfirm}" hidden="hidden">
+<!-- 									<div class="space-4"></div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+										<div class="col-sm-9">
+											<img src="{$list.head_banner}" id="head_banner_image" style="width:200px;">
+										</div>
+									</div> -->
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												修改
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="javascript:history.go(-1)">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+									</div><!-- /row -->
+
+								</form>
+
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+<script type="text/javascript">
+
+</script>
+		<include file="Index/footer" />
+	</body>
+</html>

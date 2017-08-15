@@ -1,0 +1,768 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$site_title}-吃货凑份子钱测一测有没毒、快来支持我</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/blendui/2.0.0/boost.min.css" />
+  <link rel="stylesheet" type="text/css" href="{$resource_basic}/css/webapp.css" />
+  <script type="text/javascript" src="{$resource_basic}/js/jquery.min.js"></script>
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/blendui/2.0.0/boost.min.js"></script>
+  <script type="text/javascript">
+    window.boost = $.noConflict(true);
+    </script>
+    
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+//分享
+
+wx.config({
+    debug: false,
+    appId: '{$signPackage["appId"]}',
+    timestamp: {$signPackage["timestamp"]},
+    nonceStr: '{$signPackage["nonceStr"]}',
+    signature: '{$signPackage["signature"]}',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+// 在这里调用 API
+    wx.onMenuShareTimeline({
+        title: '{$fd_info.pjname}'+"-吃货凑份子钱测一测有没毒、快来支持我！", // 分享标题
+        desc: '俺不想千毒不侵，集合爱吃的货货，凑份子钱测有没毒，快支持我一下吧', // 分享描述
+        link: "{$site_url}{:U('M/Founding/detail_of_share')}"+"?fdid="+{$fd_info['id']}, // 分享链接
+        imgUrl: 'http://zctx.1mdj.com/logo.png', // 分享图标
+        success: function () { 
+            // 用户确认分享后执行的回调函数，生成红包
+            dialog2.dialog("hide");
+            dialog3.dialog("hide");
+
+        },
+        cancel: function () { 
+            // 用户取消分享后执行的回调函数
+        }
+    });
+    
+    wx.onMenuShareAppMessage({
+        title: '{$fd_info.pjname}', // 分享标题
+        desc: '俺不想千毒不侵，集合爱吃的货货，凑份子钱测有没毒，快支持我一下吧', // 分享描述
+        link: "{$site_url}{:U('M/Founding/detail_of_share')}"+"?fdid="+{$fd_info['id']}, // 分享链接
+        imgUrl: 'http://zctx.1mdj.com/logo.png', // 分享图标
+        type: '', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () { 
+            // 用户确认分享后执行的回调函数
+            dialog2.dialog("hide");
+            dialog3.dialog("hide");
+
+        },
+        cancel: function () { 
+            // 用户取消分享后执行的回调函数
+        }
+    });
+
+});
+
+</script>
+  <style>
+      .blend-panel{background-color: #fff;}
+      .sponsor_lists [class*=col-]{background-color: #fff;border: none; margin-top: 1em;}
+      .sponsor_pay [class*=col-]{background-color: #fff;border: none; margin-top: 1em;}
+      .sponsor_pay .blend-button-primary{background-color: #fff; border: #03ab9e 1px solid; color: #000;}
+      .blend-button-primary{
+          background-color: #03ab9e;
+          border-color: #03ab9e;
+      }
+      .blend-button-primary:active{
+          background-color: #03ab9e;
+          border-color: #03ab9e;
+      }
+      .blend-button-primary:focus{
+          background-color: #03ab9e;
+          border-color: #03ab9e;
+      }
+      
+      .blend-button-primary:visited{
+          background-color: #03ab9e;
+          border-color: #03ab9e;
+      }
+      .list_right_content{
+          color: #262626;
+            display: block;
+            padding-left: 15px;
+            height: 40px;
+            font-size: 14px;
+            line-height: 40px;
+            border: none;
+      }
+      .blend-formgroup{
+          position: relative;
+      }
+      .arrow_forwards:after {
+            position: absolute;
+            font-family: boostfont;
+            content: '\e604';
+            display: block;
+            width: 20px;
+            height: 22px;
+            right: 0;
+            top: 50%;
+            margin-top: -20px;
+            font-size: 18px;
+            color: #c5c5c5;
+        }
+        .Bar ,.Bars { position: relative; width: 100%;    /* 宽度 */ border: none; padding: 1px; background-color: #e9fbfa}
+        .Bar div,.Bars div { display: block; position: relative; background:#03ab9e;/* 进度条背景颜色 */ color: #333333; height: 20px; /* 高度 */ line-height: 20px;  /* 必须和高度一致，文本才能垂直居中 */ }
+        .Bars div{ background:#090}
+        .Bar div span,.Bars div span { position: absolute; width: 100%; /* 宽度 */ text-align: center; font-weight: bold; }
+        .cent{ margin:0 auto; width:100%; overflow:hidden}
+        .sponsor_pay_username{
+            font-size: 1.5rem;
+        }
+        .sponsor_pay_username_date{
+            font-size: 1.3rem;
+        }
+        .sponsor_pay_username_money{
+            font-size: 1.3rem;
+        }
+        .blend-card-img-view{
+            width: 45px;
+            height: 45px;
+        }
+        @media screen and (max-width: 320px)
+        {
+            .sponsor_pay_username{
+                font-size: 1.2rem;
+            }
+            .sponsor_pay_username_date{
+                font-size: 1rem;
+            }
+        }
+        .blend-fixedBar{
+            height: 65px;
+            z-index: 1000;
+        }
+        .blend-card-content-view{
+            text-align: left;
+        }
+        .blend-picture-full img{
+            margin: 0;
+        }
+        [class*=blend-col-]{
+          background-color: #fff;
+          border: none;
+          text-align: center;
+          color: #000;
+          font-size: 1.5rem;
+      }
+        .blend-row{
+            background-color: #fff;
+            border: none;
+            margin:0;
+        }
+        .blend-card{
+            border-bottom: none;
+        }
+
+        .blend-row .blend-col-4:first-child{
+            border-right: 1px solid #ccc;
+        }
+
+
+        .blend-row .blend-col-4:last-child{
+            border-left: 1px solid #ccc;
+        }
+        .blend-container-fluid{
+            padding: 0;
+        }
+        #six_more_sponors{
+            border-left: none; 
+        }
+        .founding_story{
+            border: 1px solid #ccc;
+        }
+        .share_items .blend-row .blend-col-4{
+            border: none;
+            font-size: 1rem;
+        }
+        .share_items{
+            border-bottom: 1px solid #eee;
+            border-top:1px solid #eee;
+        }
+        @media screen and (max-width: 320px)
+          {
+              .blend-col-4{
+                  font-size: 1.2rem;
+                  border-left: none; 
+              }
+          }
+  </style>
+</head>
+
+<body>
+    <if condition="($issubscribe eq 0) OR ($issubscribe eq '0')">
+        <div data-blend-widget="fixedBar" class="blend-fixedBar blend-fixedBar-top" style="background-color: #fefdf4;">
+            <div class="blend-card blend-card-no-icon" style=" position: relative; background-color: #fefdf4;">
+                <div class="blend-card-img-view" style=" float: left;">
+                    <img src="http://zctx.1mdj.com/logo.png">
+                </div>
+
+                <div class="blend-card-content-view" style="width:75%;float: right; ">
+                    <div class="blend-card-title">
+                        众测天下
+                    </div>
+                    <div class="blend-card-sub-title">中国食品第一民意平台</div>
+
+                </div>
+                <div class="blend-card-img-view" style=" float: right;  position: absolute; right: 10px; width:70px; top: 25%;">
+                    <a href="http://mp.weixin.qq.com/s?__biz=MzIwNTA4MDI2OQ==&mid=400782306&idx=1&sn=37b3565d67b5b70017e8a0b6ddf5fdc0&scene=1&srcid=1216wRjczQqPUxPaksqI7ZIf&key=ac89cba618d2d976456aa41f43a2b06dfd1a54e3923db82a7f3d3e377f4e259e0697341f6a42f4c6b84e371b332e994b&ascene=0&uin=MTM3ODM0&devicetype=iMac+MacBookPro10%2C1+OSX+OSX+10.11.2+build(15C50)&version=11020201&pass_ticket=6kK2IUir3HybYujxE7oyT7J9wbkmSXS7NKdU8YLB3b4%3D" class="blend-button blend-button-primary" style="border-radius:8px;">立即关注</a>
+                </div>
+            </div>
+        </div>
+        <div style="height: 65px;">
+        </div>
+    </if>
+    <!-- Header -->
+<header data-blend-widget="header" class="blend-header header_title_bg">
+    <span class="blend-header-left">
+        <if condition="$specialid gt 0">
+            <a class="blend-header-item  blend-button" href="javascript:history.go(-1);"><img src="{$resource_basic}/img/btn_back.png" style="height:28px;"/></a>
+            <else/>
+            <if condition='$from_channel eq 1'>
+                <a class="blend-header-item  blend-button" href="javascript:history.go(-1);"><img src="{$resource_basic}/img/btn_back.png" style="height:28px;"/></a>
+                <else/>
+                <a class="blend-header-item  blend-button" href="{:U('M/Founding/lists',array('state'=>1))}"><img src="{$resource_basic}/img/btn_back.png" style="height:28px;"/></a>
+            </if>
+        </if>
+        
+        </span>
+    <span class="blend-header-title">
+        <a class="blend-header-item">检测项目详情</a>
+    </span>
+    <span class="blend-header-right">
+        <if condition="$fd_info.ifcollection eq 0">
+            <img id="collection_mark" ifcollection="{$get_new.ifcollection}" onclick="javascript:collection_action({$fd_info.ifcollection});" src="{$resource_basic}/img/collection_no.png"/>
+            <else/>
+            <img id="collection_mark" ifcollection="{$get_new.ifcollection}" onclick="javascript:collection_action({$fd_info.ifcollection});" src="{$resource_basic}/img/collection_yes.png"/>
+        </if> 
+    </span>
+</header>
+    <if condition="$fd_info.thumb_list_count gt 1 ">
+        <div class="blend-slider" data-blend-slider="">
+            <ul class="blend-slides">
+                <volist name="fd_info.thumb_list" id="vo">
+                        <li>
+                            <img src="{$site_url}{$vo}">
+                            <div class="blend-slider-title">{$fd_info.pjname}</div>
+                        </li>
+                    
+                </volist>
+            </ul>
+        </div>
+    <else/>
+    <volist name="fd_info.thumb_list" id="voo">
+        <figure class="blend-picture blend-picture-full">
+            <img src="{$site_url}{$voo}"> 
+            <figcaption class="blend-picture-title blend-picture-title-cover">{$fd_info.pjname}</figcaption>
+         </figure>
+    </volist>
+    
+        
+    </if>
+    <div id='list_more' style="border-bottom: 1px solid #ddd; ">
+
+            <div class="blend-card blend-card-no-icon" style="height:60px; position: relative;">
+                <div class="blend-card-img-view" style="float: left;">
+                    <img src="{$fd_info.avatar}" style='border-radius:100%;'>
+                </div>
+                <div class="blend-card-content-view" style="width:75%;float: left; ">
+                    <div class="blend-card-title sponsor_pay_username">
+                        &nbsp;&nbsp;{$fd_info.username}&nbsp;&nbsp;{$fd_info.btime|date="Y-m-d H:i",###} 发起
+                    </div>
+                    <div class="blend-card-sub-title sponsor_pay_username_date" style="color:#000;">&nbsp;&nbsp;"食品安全我做主，一起参与众测吧~"</div>
+
+                </div>
+
+                <div class="blend-card-img-view sponsor_pay_username_money" style=" float: right;  position: absolute; right: 5px; top: 10px;color: red; width: 65px; ">
+                    
+                </div>
+            </div>
+
+    </div>
+    <div class="blend-row">
+        <span class="blend-col-4">{$fd_info.finish}元<br/>已筹</span>
+        <span class="blend-col-4">{$total_fee}元<br/>目标</span>
+        <span class="blend-col-4">{$fd_info.sponsor_count}人<br/>已支持</span>
+    </div>
+    <if condition='($fd_info.state eq 0)'>
+    <div id="" class="blend-form" style="margin: 8px 0; font-size: 1.2rem; padding: 10px; color: #22ac9e; background-color: #e9fbfa">
+            温馨提示:检测金额为检测费用，不包含检测样品费用，最终金额以审核过后的金额为准。
+    </div>
+    </if>
+    
+     <!-- Header End -->
+     <div class="div_gap"></div>
+     <div class="blend-panel">
+        <div class="blend-panel-body ">
+            <if condition='($fd_info.state eq 0) OR ($fd_info.state eq 1)'>
+                    <img src='{$resource_basic}/img/founding_status_1.png' style='padding: 1rem; width: 100%;'/> 
+                <elseif condition='($fd_info.state eq 2)'/>
+                    <img src='{$resource_basic}/img/founding_status_2.png' style='padding: 1rem; width: 100%;'/> 
+                <else/>
+                    <img src='{$resource_basic}/img/founding_status_3.png' style='padding: 1rem; width: 100%;'/> 
+            </if>
+            
+            
+            
+        </div>
+        
+    </div>
+     
+     <!--更多支持者-->
+     <div class="blend-grid blend-container-fluid">
+         <div class="blend-row">
+             <span class="blend-col-8" style=" text-align: left;">
+                 <volist name="fd_info.latest_six_sponsors" id="vooo">
+                     <img src="{$vooo.avatar}" style="width:25px; height: 25px; border-radius: 100%;"/>
+                 </volist>
+             </span>
+             <a href="{:U('sponsors',array('fdid'=>$fd_info['id']))}" style="font-size:1.5rem; color: #03ab9e;">
+                <span class="blend-col-4" id="six_more_sponors">更多支持者 &gt;</span> 
+             </a>
+         </div>
+     </div>
+     
+     
+     <!--众测故事-->
+     <div class="blend-panel founding_story">
+        
+        <div class="blend-panel-body">
+            {$fd_info.content}
+            
+            
+        </div>
+    </div>
+     
+     <div class="div_gap"></div>
+     <!--检测详情-->
+     <a href="{:U('M/Founding/detail_of_testing',array('fdid'=>$fdid))}">
+     <div class="blend-formgroup ">
+        <label class="blend-formgroup-label">检测详情</label>
+        <label class="list_right_content arrow_forwards"> </label>
+    </div>
+     </a>
+     
+     <!--支持者排行-->
+     <div class="div_gap"></div>
+    <div class="blend-panel">
+        <div class="blend-panel-header blend-panel-left">
+            支持者
+        </div>
+        <div class="blend-panel-body">
+           <notempty name="fd_info.hot_sponsors">
+            <div id='list_more'>
+                <volist name="fd_info.hot_sponsors" id="vo">
+
+                        <div class="blend-card blend-card-no-icon" style="height:60px; position: relative;">
+                            <div class="blend-card-img-view" style="float: left;">
+                                <img src="{$vo.avatar}" style='border-radius:100%;'>
+                            </div>
+                            <div class="blend-card-content-view" style="width:75%;float: left; ">
+                                <div class="blend-card-title sponsor_pay_username">
+                                   {$vo.username}
+                                </div>
+                                <div class="blend-card-sub-title sponsor_pay_username_date">{$vo.paytime|date="Y-m-d H:i",###}</div>
+
+                            </div>
+
+                            <div class="blend-card-img-view sponsor_pay_username_money" style=" float: right;  position: absolute; right: 5px; top: 10px;color: red; width: 65px; color: #f8a00a; ">
+                                ￥{$vo.money} 元
+                            </div>
+                        </div>
+
+                </volist>
+                </div>
+
+            <else/>
+            <span class="blend-col-12">
+                亲，等你立刻参与啦！
+            </span>
+            </notempty> 
+            
+            
+        </div>
+        <div class="blend-panel-footer blend-panel-center" style="font-size:1.5rem; color: #03ab9e;">
+            <a href="{:U('sponsors',array('fdid'=>$fd_info['id']))}" style="font-size:1.5rem; color: #03ab9e;">查看更多支持信息({$fd_info.sponsors_count}) &gt; </a>
+        </div>
+    </div>
+     
+     
+     <!--精彩评论-->
+     <div class="div_gap"></div>
+    <div class="blend-panel">
+        <div class="blend-panel-header blend-panel-left">
+            精彩评论  <span style="float:right; color: #03ab9e;" id='add_commnet'> + 我来说两句</span>
+        </div>
+        <div class="blend-panel-body">
+           <notempty name="fd_info.hot_comments">
+                <div id='list_more'>
+                <volist name="fd_info.hot_comments" id="vo">
+
+                        <div class="blend-card blend-card-no-icon" style=" min-height:80px; position: relative;">
+                            <div class="blend-card-img-view" style="float: left;">
+                                <img src="{$vo.avatar}" style='border-radius:100%;'>
+                            </div>
+                            <div class="blend-card-content-view" style="width:75%;float: left; ">
+                                <div class="blend-card-title sponsor_pay_username">
+                                   {$vo.username}
+                                </div>
+                                <div class="blend-card-sub-title sponsor_pay_username_date">{$vo.ctime|date="Y-m-d H:i",###}</div>
+                                <div class="blend-card-sub-title comment-content">{$vo.content}</div>
+
+                            </div>
+
+                            <div class="blend-card-img-view sponsor_pay_username_money" style=" float: right;  position: absolute; right: 5px; top: 10px;color: red; width: 65px; color: #f8a00a; ">
+                                
+                            </div>
+                        </div>
+
+                </volist>
+                </div>
+
+            <else/>
+            
+            
+                亲，等你立刻参与啦！
+            
+            
+            </notempty> 
+            
+            
+        </div>
+        <div class="blend-panel-footer blend-panel-center" style="font-size:1.5rem; color: #03ab9e;">
+            <a href="{:U('comments',array('fdid'=>$fd_info['id'],'pid'=>0))}" style="font-size:1.5rem; color: #03ab9e;">查看更多评论({$fd_info.comment_count}) &gt; </a>
+        </div>
+    </div>
+    
+     
+     <div class="div_gap"></div>
+    <!--main content-->
+    
+    
+
+    
+    <!--<div class="div_gap"></div>-->
+    
+    
+    
+
+    
+    
+    <!--判断状态-->
+    
+    
+    
+    
+    
+    <!--test-->
+    
+
+    
+    <!--main content End-->
+    
+    
+    <!--footer-->
+    <div id="customDialog4" class="blend-dialog">
+        <div class="blend-grid blend-container-fluid" style="margin-top:20px;">
+            <div class="blend-formgroup">
+                <textarea class="blend-formgroup-input" style=" height: 60px;" id="content" name="content" placeholder="我想说两句..."></textarea>
+            </div>
+            <div class="" style=" margin-top:10px; margin-bottom:10px;">
+                <button class="blend-button blend-button-primary blend-button-large" id="success" style=" background-color:#03ab9e;">发布</button>
+            </div>  
+        </div>
+    </div>
+    
+    <!--footer End-->
+    <div style="height:40px;"></div>
+    <if condition='($fd_info.state eq 1) OR ($fd_info.state eq 0)' >
+        <div class="footer_nav">
+            <if condition="$specialid gt 0">
+                <a class="blend-button blend-button-primary blend-button-large" href="{:U('M/Founding/donate_pay_money',array('fdid'=>$fdid,'specialid'=>$specialid))}">立即支持</a>
+                
+                <else/>
+                <a class="blend-button blend-button-primary blend-button-large" href="{:U('M/Founding/donate_pay_money',array('fdid'=>$fdid))}">立即支持</a>
+            </if>
+            
+        </div>
+    </if>
+    
+    <div  id="customDialog" class="blend-dialog" style=' border-radius: 12px;'>
+        <!--支付成功顶部 close-->
+        <div class="close_dialog" style=' height: 30px;'>
+            <button class="blend-button blend-button-ltgray" style="float:right; border-radius: 12px;" id="close_dialog_btn">关闭</button>
+        </div>
+        <div class="pay_ok">
+            <div style=" border-radius: 10px; width: 100px; height: 30px; border: 1px dashed #03ab9e; font-size: 1.4rem; color: #03ab9e; margin: auto; text-align: center; line-height: 30px;">
+                支付成功
+            </div>
+        </div>
+        <div class="share_title" style=" text-align: left; color:#03ab9e; font-size: 1.2rem; padding: 1rem; ">
+            分享给更多朋友
+        </div>
+        <div class="share_items blend-grid blend-container-fluid">
+            <div class="blend-row">
+                <span class="blend-col-2"></span>
+                <span class="blend-col-4 share_item_btn"><img src="{$resource_basic}/img/pay_ok_share_btn_wx.png" style=" width: 80%;"/> 微信好友</span>
+                <span class="blend-col-4 share_item_btn"><img src="{$resource_basic}/img/pay_ok_share_btn_pyq.png" style=" width: 80%;"/> 朋友圈</span>
+                <span class="blend-col-2"></span>
+            </div>
+            
+        </div>
+        <div class="my_orders" style=" text-align: center; height: 32px; line-height: 32px;">
+            <a href="{:U('M/Member/my_orders')}" style="color: #03ab9e;font-size: 1.2rem;">查看我支持的项目 &gt;</a>
+        </div>
+        
+    </div>
+    
+    <div  id="customDialog2" class="blend-dialog" style=" width: 100%; top: 10px;background-color:#000; opacity: 0.7;" >
+        <img id="close_dialog2_btn" src="{$resource_basic}/img/share_bg_after_payment.png" style=" width: 100%;"/>
+    </div>
+    
+ <include file="Index/foot_analyze"/> 
+</body>
+<script type="text/javascript" src="{$resource_basic}/js/handlebars.min.js"></script>
+<script type="text/x-handlebars-template" id="tpi-list-item">
+  {{#each this}}
+    <div class="blend-card blend-card-no-icon" style="height:60px; position: relative;">
+                <div class="blend-card-img-view" style="float: left;">
+                    <img src="{{avatar}}" style='border-radius:100%;'>
+                </div>
+                <div class="blend-card-content-view" style="width:75%;float: left; ">
+                    <div class="blend-card-title sponsor_pay_username">
+                       {{username}}
+                    </div>
+                    <div class="blend-card-sub-title sponsor_pay_username_date">{{paytime_format}}</div>
+
+                </div>
+
+                <div class="blend-card-img-view sponsor_pay_username_money" style=" float: right;  position: absolute; right: 5px; top: 10px;color: red; width: 65px; ">
+                    ￥{{money}} 元
+                </div>
+            </div>
+  {{/each}}
+</script>
+<script>
+$(function(){
+//    open_loading();
+
+    var generatedCount=0;
+
+    $("#loading_more").click(function(){
+            open_loading();
+
+            generatedCount++;
+
+
+            /*
+            * 获取更多的美容师列表
+            */
+           $.ajax({ 
+                   type: 'GET', 
+                   url: '{:U("M/Founding/get_sponor_by_page")}', 
+                   dataType: 'json', 
+                   data:"pagecount="+generatedCount+"&fdid="+"{$fd_info.id}",
+                   cache: false, 
+                   error: function(){ 
+                       return false; 
+                   }, 
+                   success:function(json){ 
+                        close_loading();
+                        if(json.err===0)
+                        {
+                            var template = Handlebars.compile($('#tpi-list-item').html());
+                            var html = template(json.res);
+                            $("#list_more").append(html);
+                        }
+                        else
+                        {
+                            alert(json.msg);
+                            $("#loading_more").text(json.msg);
+                            $("#loading_more").hide();
+                        }
+
+                   } 
+               });
+        });
+        
+        $("#add_commnet").bind('click',function(){
+            dialog4.dialog("show");
+        });
+        
+        $("#success").click(function(){
+        
+        var content = $("#content").val();
+        //评论不能为空
+        if(content.length===0)
+        {
+            alert("评论不能为空");
+            return false;
+        }
+        var pid=0;
+        var mid = {$mid};
+        var fdid= {$fdid} ;
+        
+        $.ajax({ 
+                   type: 'POST', 
+                   url: '{:U("M/Founding/comments_add")}', 
+                   dataType: 'json', 
+                   data:"pid="+pid+"&mid="+mid+"&fdid="+fdid+"&content="+content,
+                   cache: false, 
+                   error: function(){ 
+                       return false; 
+                   }, 
+                   success:function(json){ 
+                        if(json===1)
+                        {
+                            window.location.reload();
+                        }
+                        else
+                        {
+                            alert("添加失败，请稍后再试");
+                            
+                        }
+                        
+                        $(".blend-dialog").dialog("hide");
+                        
+                   } 
+               });
+
+    });
+});
+// 加载的loading...
+ document.onreadystatechange = subSomething;//当页面加载状态改变的时候执行这个方法. 
+    function subSomething() 
+    { 
+        if(document.readyState === "complete") //当页面加载状态 
+        {
+//            close_loading();
+
+        }
+    }
+ 
+    function open_loading()
+    {
+        var loading = $.blend.loading();
+        loading.show();
+    }
+    
+    function close_loading()
+    {
+        $('.blend-loading').hide();
+    }
+    
+    function collection_action(status)
+    {
+        var ifcollection = $("#collection_mark").attr("ifcollection");
+        
+        $.ajax({ 
+                type: 'GET', 
+                url: '{:U("M/Founding/add_one_colletion")}', 
+                dataType: 'json', 
+                data:"mid="+{$mid}+"&ifcollection="+ifcollection+"&id="+{$fdid},
+                cache: false, 
+                error: function(){ 
+                    return false; 
+                }, 
+                success:function(json){ 
+                     close_loading();
+                     if(json===1)
+                     {
+                         //修改成功
+                         if(ifcollection===1||ifcollection=="1")
+                         {
+                             $("#collection_mark").attr("src","{$resource_basic}/img/collection_no.png");
+                             var $toast = $.blend.toast();
+                             $toast.show("取消收藏",1000);
+                              $("#collection_mark").attr("ifcollection","0");
+                         }
+                         else
+                         {
+                             $("#collection_mark").attr("src","{$resource_basic}/img/collection_yes.png");
+                             var $toast = $.blend.toast();
+                             $toast.show("收藏成功",1000);
+                             $("#collection_mark").attr("ifcollection","1");
+                         }
+                         
+                         
+                     }
+                     else
+                     {
+//                         $("#collection_mark").attr("src","{$resource_basic}/img/collection_no.png");
+                     }
+
+                } 
+            });
+    }
+</script>
+<script>
+      /**
+         * 自定义DOM渲染
+         */
+        var dialog4 = boost("#customDialog4").dialog({
+            maskTapClose:true,
+            renderType:2
+        }).on("dialog:hide",function(){
+//            alert("哎呀妈呀，真的会触发事件啊");
+        });
+        
+        var dialog3 = boost("#customDialog").dialog({
+            maskTapClose:true,
+            renderType:2
+        }).on("dialog:hide",function(){
+//            alert("哎呀妈呀，真的会触发事件啊");
+        });
+        
+        var dialog2 = boost("#customDialog2").dialog({
+            maskTapClose:true,
+            renderType:2
+        }).on("dialog:hide",function(){
+//            alert("哎呀妈呀，真的会触发事件啊");
+        });
+        
+        
+        dialog3.dialog("show");
+//        boost("#custom-dialog-btn").on('click',function(e){
+//            dialog3.dialog("show");
+//        });
+
+    $("#close_dialog_btn").on("click",function(){
+        dialog3.dialog("hide");
+    });
+    
+    $(".share_item_btn").on("click",function(){
+        dialog3.dialog("hide");
+        dialog2.dialog("show");
+        
+//        $("#customDialog2").css("background-color",null);
+    });
+    
+    $("#customDialog2").on("click",function(){
+        dialog2.dialog("hide");
+    });
+      
+
+</script>
+
+
+<?php require_once 'cs.php';echo '<img src="'._cnzzTrackPageView(1256622573).'" width="0" height="0"/>';?>
+</body>
+</html>

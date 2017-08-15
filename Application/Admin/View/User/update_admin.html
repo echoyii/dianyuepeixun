@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/User/update_admin')}" method="POST">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名: </label>
+
+										<div class="col-sm-9">
+											<input type="text" name="username" id="form-field-1" placeholder="用户名" class="col-xs-10 col-sm-5" value="{$list['username']}">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 新密码: </label>
+
+										<div class="col-sm-9">
+											<input type="password" id="form-field-2" placeholder="新密码" class="col-xs-10 col-sm-5" name="passwordone">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 再次输入新密码: </label>
+
+										<div class="col-sm-9">
+											<input type="password" id="form-field-2" placeholder="再次输入新密码" class="col-xs-10 col-sm-5" name="passwordtwo">
+										</div>
+									</div>
+									<input type="text" name="id" value="{$list['id']}" hidden="hidden" >
+
+									<div class="space-4"></div>
+									<hr />
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 用户管理: </label>
+											<div class="col-sm-9" >
+											<volist name="node" id="vo">
+											<if condition="$vo.cid eq 15">
+												<label style="margin-right:30px;"> 
+												<input name="node[]" type="checkbox" class="ace" value="{$vo.id}" <if condition="$vo.check eq 1"> checked="checked" </if> >
+												<span class="lbl">{$vo.content}</span>
+												</label>
+											</if>
+											</volist>
+											</div>
+									</div>
+									<hr />
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 项目管理: </label>
+											<div class="col-sm-9" >
+											<volist name="node" id="vo">
+											<if condition="$vo.cid eq 16">
+												<label style="margin-right:30px;"> 
+												<input name="node[]" type="checkbox" class="ace" value="{$vo.id}" <if condition="$vo.check eq 1"> checked="checked" </if> >
+												<span class="lbl">{$vo.content}</span>
+												</label>
+											</if>
+											</volist>
+											</div>
+									</div>
+									<hr />
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 产品管理: </label>
+											<div class="col-sm-9" >
+											<volist name="node" id="vo">
+											<if condition="$vo.cid eq 17">
+												<label style="margin-right:30px;"> 
+												<input name="node[]" type="checkbox" class="ace" value="{$vo.id}" <if condition="$vo.check eq 1"> checked="checked" </if>  >
+												<span class="lbl">{$vo.content}</span>
+												</label>
+											</if>
+											</volist>
+											</div>
+									</div>
+									<hr />
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 机构管理: </label>
+											<div class="col-sm-9" >
+											<volist name="node" id="vo">
+											<if condition="$vo.cid eq 18">
+												<label style="margin-right:30px;"> 
+												<input name="node[]" type="checkbox" class="ace" value="{$vo.id}" <if condition="$vo.check eq 1"> checked="checked" </if>  >
+												<span class="lbl">{$vo.content}</span>
+												</label>
+											</if>
+											</volist>
+											</div>
+									</div>
+									<hr />
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 广告管理: </label>
+											<div class="col-sm-9" >
+											<volist name="node" id="vo">
+											<if condition="$vo.cid eq 19">
+												<label style="margin-right:30px;"> 
+												<input name="node[]" type="checkbox" class="ace" value="{$vo.id}"  <if condition="$vo.check eq 1"> checked="checked" </if> >
+												<span class="lbl">{$vo.content}</span>
+												</label>
+											</if>
+											</volist>
+											</div>
+									</div>
+									<hr />
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 套餐设置: </label>
+											<div class="col-sm-9" >
+											<volist name="node" id="vo">
+											<if condition="$vo.cid eq 20">
+												<label style="margin-right:30px;"> 
+												<input name="node[]" type="checkbox" class="ace" value="{$vo.id}"  <if condition="$vo.check eq 1"> checked="checked" </if> >
+												<span class="lbl">{$vo.content}</span>
+												</label>
+											</if>
+											</volist>
+											</div>
+									</div>
+
+									<hr />
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 消息通知: </label>
+											<div class="col-sm-9" >
+											<volist name="node" id="vo">
+											<if condition="$vo.cid eq 21">
+												<label style="margin-right:30px;"> 
+												<input name="node[]" type="checkbox" class="ace" value="{$vo.id}"  <if condition="$vo.check eq 1"> checked="checked" </if> >
+												<span class="lbl">{$vo.content}</span>
+												</label>
+											</if>
+											</volist>
+											</div>
+									</div>
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												修改
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/User/admin_lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+									</div><!-- /row -->
+
+								</form>
+
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<include file="Index/footer" />
+	</body>
+</html>

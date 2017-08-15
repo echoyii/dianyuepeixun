@@ -1,0 +1,45 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/blendui/2.0.0/boost.min.css" />
+  <link rel="stylesheet" type="text/css" href="{$resource_basic}/css/webapp.css" />
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/blendui/2.0.0/boost.min.js"></script>
+
+  <style>
+      .blend-panel{background-color: #fff;}
+      a:active，a:hover,a:visited{text-decoration: none;}
+      .blend-card-title{ text-align: center;}
+  </style>
+</head>
+
+<body>
+    <header data-blend-widget="header" class="blend-header header_title_bg">
+        <span class="blend-header-title">
+            <a class="blend-header-item">文章列表</a>
+        </span>
+    </header>
+
+  
+    <volist name="list" id="vo">
+    <div class="blend-card blend-card-no-icon">
+        <div>
+        <a href="{:U('Home/Essay/details',array('id' => $vo['id']))}">
+            <div class="blend-card-title">
+               {$vo.title}
+            </div>
+        </a>
+        </div>
+    </div>
+    </volist>
+
+
+</body>
+</html>

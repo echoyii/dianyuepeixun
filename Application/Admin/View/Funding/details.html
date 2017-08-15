@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+		<style type="text/css">
+		.details-table{ height: 40px;}
+		.details-table-row{ height: 40px;}
+		</style>
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+								<div class="profile-user-info profile-user-info-striped">
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> ID </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="username">{$list['id']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 项目名 </div>
+
+										<div class="profile-info-value details-table-row">
+											<i class=" light-orange bigger-110"></i>
+											<span class="editable editable-click" id="country">{$list['pjname']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 品牌名 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="age">{$list['pdname']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row" >
+										<div class="profile-info-name details-table"> 产品描述 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="signup">{$list['content']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table" style="height:170px;"> 产品图片 </div>
+
+										<div class="profile-info-value details-table-row" style="height:170px;">
+											<img src="{$list['thumb']}" style="width:150px; height:150px; ">
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 所属分类 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="login">{$list['first_categoryid']}</span>
+											<span class="editable editable-click" id="login">{$list['second_categoryid']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 检测套餐 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about">{$list['packageid']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 检测机构 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about">{$list['institutionid']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 所需筹金 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about">{$list['emoney']/100}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 项目状态 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about">{$list['state']}</span>
+										</div>
+									</div>
+									
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 发起时间 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about">{$list['ctime']|date="Y-m-d H:i:s",###}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 项目时间 </div>
+
+										<div class="profile-info-value details-table-row">
+										开始:
+											<span class="editable editable-click" id="about">{$list['btime']|date="Y-m-d H:i:s",###}</span>
+										结束:
+											<span class="editable editable-click" id="about">{$list['etime']|date="Y-m-d H:i:s",###}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 发起人 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about"><?php if($list['mid']){ echo $list['mid'];}else{ echo 'NULL';} ?></span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 抽样数量 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about">{$list['samnum']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 抽样地址 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about">{$list['location']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 检测结果 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about">{$list['result']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 检测证书 </div>
+
+										<div class="profile-info-value details-table-row">
+											<label> <a target="_blank" href="<?php if(!empty($list['testreport']['download'])){ echo $list['testreport']['download'];}else{ echo 'NULL';} ?>">检测证书pdf</a></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<label><a target="_blank" href="<?php if(!empty($list['testreport']['download_jpg'])){echo $list['testreport']['download_jpg'];}else{echo 'NULL';}?>">检测证书jpg</a></label> 
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table" style="height:170px;"> 样品图 </div>
+										<div class="profile-info-value details-table-row" style="height:170px;">
+											<div class="col-xs-12">
+												<ul class="ace-thumbnails">
+												<?php foreach($list['sampleid'] as $v){ ?>
+													<li>
+														<a href="" data-rel="colorbox" class="cboxElement">
+															<img alt="150x150" src="<?php echo $v; ?>" style="width:150px; height:150px;">
+														</a>
+													</li>
+												<?php } ?>
+												</ul>
+											</div>
+											<!-- 图片列表结束处 -->
+											<!-- modify 2015918-->
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 项目排序 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about">{$list['rank']}</span>
+										</div>
+									</div>
+
+									<div class="profile-info-row">
+										<div class="profile-info-name details-table"> 已筹金额 </div>
+
+										<div class="profile-info-value details-table-row">
+											<span class="editable editable-click" id="about">{$list['finish']/100}</span>
+										</div>
+									</div>
+
+								</div>
+								<a href="{:U('Admin/Funding/new_lists')}" style="float:right;">
+									<button class="btn" type="button">
+										<i class="icon-undo bigger-110"></i>
+										返回
+									</button>
+								</a>
+
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<include file="Index/footer" />
+
+	</body>
+</html>

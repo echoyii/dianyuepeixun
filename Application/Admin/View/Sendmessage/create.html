@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-9">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/Sendmessage/create')}" method="POST">
+									
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 消息提示文字: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="消息提示文字" class="col-xs-10 col-sm-8" name="ticker">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 标题: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="标题" class="col-xs-10 col-sm-8" name="title">
+										</div>
+									</div>
+
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 提示内容: </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="提示内容" class="col-xs-10 col-sm-8" name="text">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 消息类型: </label>
+										<div class="col-sm-9">
+										<select name="type">
+										<option value="">选择消息类型......</option>
+										<option value="go_app">打开应用</option>
+										<option value="go_url">跳转到url</option>
+										<option value="go_activity">打开项目</option>
+										</select>
+										</div>
+									</div>
+
+
+									<!-- <div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 消息类型: </label>
+										<div class="radio" style="float:left; margin-right:10px; margin-top:-4px;">
+											<label>
+												<input name="state" type="radio" value="1" class="ace" checked="checked">
+												<span class="lbl"> 显示</span>
+											</label>
+										</div>
+
+										<div class="state" style="float:left; margin-right:10px; margin-top:3px;">
+											<label>
+												<input name="state" type="radio" value="0" class="ace" >
+												<span class="lbl"> 隐藏</span>
+											</label>
+										</div>
+									</div> -->
+									<div class="space-4"></div>
+						
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 消息内容: </label>
+										<div class="col-sm-9">
+											 <script id="container" name="content" type="text/plain">
+											 填写你的消息内容
+											 </script>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												添加至草稿
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/Sendmessage/lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回列表页
+											</button>
+										</a>
+											
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+<!-- 									</div><! /row --> 
+
+								</form>
+							</div>
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+	<!-- 加载编辑器的容器 -->
+    <script id="container" name="content" type="text/plain">
+        这里写你的初始化内容
+    </script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container',{
+        	toolbars: [
+    ['fullscreen', 'source', 'undo', 'redo'],
+    ['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc'],
+    ['horizontal','time','link','justifyleft','justifyright', 'justifycenter', 'justifyjustify', 'pagebreak','lineheight']
+
+]
+        });
+    </script>
+		<include file="Index/footer" />
+	</body>
+</html>

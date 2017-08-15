@@ -1,0 +1,24 @@
+body{ background-color: #fefdf3;}
+header{ width: 1000px; margin: 0 auto;}
+#banner{ width: 100%; background-color: #03ab9e;}
+#boder{ width: 1000px; height: 440px; margin: auto; margin-bottom: 2px; background-image: url(./img/banner@2x.png);}
+#bodyer{ width: 1000px; margin: auto; }
+img{ margin-top: -3px;}
+footer{ width: 100%; height: 350px;  background-color: #24b5a6;}
+#huawen{ width: 1900px; height: 236px; margin-top:-4px; margin: auto; background-image: url(./img/footer1x.png);filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";  
+-moz-background-size:100% 100%; background-size:100% 100%;  }
+#left{float: left; margin-left: 50px; margin-top: 50px;}
+#right{ float: right; margin-right: 100px; margin-top: 50px;}
+#right dl dd{ margin-bottom: 20px; font-size: 35px; color: #ffffff; font-family: SimHei;}
+#right span p{ float: left; }
+#phone{ margin-left: 40px;}
+#telnum{ font-size: 55px; color: #ffffff; font-family: SimHei; margin-left: 20px; margin-top: 15px;}
+#boder dl{ margin-left: 50%; position: relative; left: 150px; top:70px;}
+#boder dl dd{ margin-bottom: 10px;font-family: SimHei;}
+.one{ font-size: 40px; color: #fad900; letter-spacing:-5px;}
+.two{ font-size: 25px; color: #ffffff; letter-spacing:-1px;}
+.three div{ float: left;}
+#dl_right{ margin-top: 15px; margin-left: 20px;}
+#dise{ width: 1000px;  background-color: #24b5a6; height: 350px; margin: auto;}
+
+

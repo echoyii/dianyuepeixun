@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/Organ/add')}" method="POST" enctype="multipart/form-data">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 检测机构名字: </label>
+
+										<div class="col-sm-9">
+											<input type="text" name="name" id="form-field-1" placeholder="机构名称" class="col-xs-10 col-sm-5">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 检测机构地址: </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="机构地址" class="col-xs-10 col-sm-5" name="address">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 机构电话: </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="机构电话" class="col-xs-10 col-sm-5" name="phone">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 机构网站: </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="机构网站" class="col-xs-10 col-sm-5" name="url">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 机构简介: </label>
+										<div class="col-sm-4">
+											<div class="widget-box">
+												<div class="widget-header widget-header-small header-color-blue">  </div>
+												<div class="widget-body">
+													<div class="widget-main no-padding">
+														<textarea class="span12 md-input" name="content" data-provide="markdown" rows="10" style="resize: none;"></textarea>
+													</div>
+													<div class="widget-toolbox padding-4 clearfix">
+														<div class="btn-group pull-left">
+														</div>
+														<div class="btn-group pull-right">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 上传logo: </label>
+										<div class="col-sm-8">
+											<input type="file" id="form-field-2" class="col-xs-10 col-sm-5" name="logo">
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 机构图片: </label>
+										<div class="col-sm-8">
+											<input type="file" id="form-field-2" class="col-xs-10 col-sm-5" name="photo">
+										</div>
+									</div>
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												添加
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/Organ/lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+									</div><!-- /row -->
+
+								</form>
+
+						</div>
+
+						
+
+
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<include file="Index/footer" />
+	</body>
+</html>

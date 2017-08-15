@@ -1,0 +1,144 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$site_title}</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/blendui/2.0.0/boost.min.css" />
+  <link rel="stylesheet" type="text/css" href="{$resource_basic}/css/webapp.css" />
+  <script type="text/javascript" src="{$resource_basic}/js/jquery.min.js"></script>
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/blendui/2.0.0/boost.min.js"></script>
+  <script type="text/javascript">
+    window.boost = $.noConflict(true);
+    </script>
+ <style>
+     body{
+         background-color: #fff;
+     }
+      .blend-panel{background-color: #fff;}
+      [class*=blend-col-]{
+          background-color: #fff;
+          border: none;
+          text-align: center;
+      }
+      [class*=blend-col-] img{
+          text-align: center;
+          width: 100%;
+      }
+      .blend-button-primary{
+          background-color: #03ab9e;
+          border-color: #03ab9e;
+      }
+      .blend-button-primary:active{
+          background-color: #03ab9e;
+          border-color: #03ab9e;
+      }
+      .blend-button-primary:focus{
+          background-color: #03ab9e;
+          border-color: #03ab9e;
+      }
+      
+      .blend-button-primary:visited{
+          background-color: #03ab9e;
+          border-color: #03ab9e;
+      }
+  </style>
+</head>
+
+<body>
+<header data-blend-widget="header" class="blend-header header_title_bg">
+    <span class="blend-header-left">
+            <a class="blend-header-item  blend-button" href="{:U('M/Index/index')}"><img src="{$resource_basic}/img/btn_back.png" style="height:28px;"/></a>
+        </span>
+    <span class="blend-header-title">
+        <a class="blend-header-item">支付成功</a>
+    </span>
+    <span class="blend-header-right">
+    </span>
+</header>
+    
+    <figure class="blend-picture blend-picture-full" >
+        <img src='{$resource_basic}/img/share_bg.jpg' />
+    </figure>
+    
+    
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+
+// 加载的loading...
+ document.onreadystatechange = subSomething;//当页面加载状态改变的时候执行这个方法. 
+    function subSomething() 
+    { 
+        if(document.readyState === "complete") //当页面加载状态 
+        {
+           
+
+        }
+    }
+</script>
+<!--取出来本地存储的信息，提交到服务器，得到返回结果再显示-->
+
+<script>
+
+wx.config({
+    debug: false,
+    appId: '{$signPackage["appId"]}',
+    timestamp: {$signPackage["timestamp"]},
+    nonceStr: '{$signPackage["nonceStr"]}',
+    signature: '{$signPackage["signature"]}',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+// 在这里调用 API
+    wx.onMenuShareTimeline({
+        title: '{$fd_info.pjname}', // 分享标题
+        desc: '{$fd_info.pjname}', // 分享描述
+        link: "{$site_url}{:U('M/Founding/detail')}"+"?fdid="+{$fd_info['id']}, // 分享链接
+        imgUrl: 'http://zctx.1mdj.com/logo.png', // 分享图标
+        success: function () { 
+            // 用户确认分享后执行的回调函数，生成红包
+//            alert($("#code").val());
+        },
+        cancel: function () { 
+            // 用户取消分享后执行的回调函数
+        }
+    });
+    
+    wx.onMenuShareAppMessage({
+        title: '{$fd_info.pjname}', // 分享标题
+        desc: '{$fd_info.pjname}', // 分享描述
+        link: "{$site_url}{:U('M/Founding/detail')}"+"?fdid="+{$fd_info['id']}, // 分享链接
+        imgUrl: 'http://zctx.1mdj.com/logo.png', // 分享图标
+        type: '', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () { 
+            // 用户确认分享后执行的回调函数
+//            alert($("#code").val());
+        },
+        cancel: function () { 
+            // 用户取消分享后执行的回调函数
+        }
+    });
+
+});
+
+$(function(){
+   $('.share_payment').click(function(){
+       alert("点击右上角分享");
+   }); 
+});
+
+</script>
+
+<?php require_once 'cs.php';echo '<img src="'._cnzzTrackPageView(1256622573).'" width="0" height="0"/>';?>
+</body>
+</html>

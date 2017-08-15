@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<include file="Index/head" />
+		<script type="text/javascript" src="__PUBLIC__/date/js/laydate.js"></script>
+	</head>
+
+	<body>
+		<include file="Index/header" />
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<include file="Index/menu" />
+				
+				<div class="main-content">
+					<include file="Index/nav" />
+
+					<div class="page-content">
+						
+							<!-- /**
+							 * 右侧页面begin
+							 */ -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" action="{:U('Admin/Vote/add_vote_special')}" method="POST" enctype="multipart/form-data">
+								<div class="space-4"></div>
+								<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 投票专题名: </label>
+										<div class="col-sm-9">
+											<input type="text" name="name" id="form-field-1" class="col-xs-10 col-sm-5" required="required">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+										<div class="col-sm-9">
+											<img src="" id="head_banner_image" style="width:200px;">
+											<input type="text" name="head_banner_id" id="head_banner_id"  hidden="hidden">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 专题头部图片: </label>
+										<div class="col-sm-9">
+											<input type="file" name="head_banner" id="head_banner" class="col-xs-10 col-sm-5" required="required">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+										<div class="col-sm-9">
+											<img src="" id="foot_banner_image" style="width:200px;">
+											<input type="text" name="foot_banner_id" id="foot_banner_id" hidden="hidden">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 专题底部图片: </label>
+										<div class="col-sm-9">
+											<input type="file" name="foot_banner" id="foot_banner" class="col-xs-10 col-sm-5" required="required">
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 时间: </label>
+										<div class="row">
+											<div class="col-xs-8 col-sm-4">
+											<input placeholder="选择开始时间" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="btime">
+											<input placeholder="选择结束时间" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" name="etime">
+											</div>
+										</div>			
+									</div>
+
+
+									<div class="space-4"></div>
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												添加
+											</button>									
+										&nbsp; &nbsp; &nbsp;
+										<a href="{:U('Admin/Vote/vote_special_lists')}">
+											<button class="btn" type="button">
+												<i class="icon-undo bigger-110"></i>
+												返回
+											</button>
+										</a>
+											
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+									</div><!-- /row -->
+
+								</form>
+
+						</div>
+							<!-- /**
+							 * 右侧页面end
+							 */ -->
+					</div><!-- /.page-content -->
+				</div>
+
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+<script type="text/javascript">
+$("#head_banner").on('change',function(){
+
+	var fd = new FormData();
+	fd.append("head_banner",document.getElementById("head_banner").files[0]);
+
+	fd.append('file','head_banner');
+	var url="{:U('Admin/Vote/upload_image')}";
+	$.ajax({
+		type:'POST',
+		url:url,
+		 // 告诉jQuery不要去处理发送的数据
+		processData: false,
+		 // 告诉jQuery不要去设置Content-Type请求头
+		contentType: false,
+		data:fd,
+		dataType:'json',
+		success:function(data){
+			if(data==0){
+
+				return;
+				
+			}else{
+
+				var head_banner_url = data['turl'];
+				var head_banner_id = data['tid'];
+				$("#head_banner_image").attr('src',head_banner_url);
+				$("#head_banner_id").val(head_banner_id);				
+			}
+		}
+	});
+});
+$("#foot_banner").on('change',function(){
+
+	var fd = new FormData();
+	fd.append("foot_banner",document.getElementById("foot_banner").files[0]);
+
+	fd.append('file','foot_banner');
+	var url="{:U('Admin/Vote/upload_image')}";
+	$.ajax({
+		type:'POST',
+		url:url,
+		 // 告诉jQuery不要去处理发送的数据
+		processData: false,
+		 // 告诉jQuery不要去设置Content-Type请求头
+		contentType: false,
+		data:fd,
+		dataType:'json',
+		success:function(data){
+			if(data==0){
+
+				return;
+				
+			}else{
+
+				var foot_banner_url = data['turl'];
+				var foot_banner_id = data['tid'];
+				$("#foot_banner_image").attr('src',foot_banner_url);
+				$("#foot_banner_id").val(foot_banner_id);				
+			}
+		}
+	});
+});
+</script>
+		<include file="Index/footer" />
+	</body>
+</html>
